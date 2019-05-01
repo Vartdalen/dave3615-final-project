@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+</head>
+<body>
+    <section class="content-header" th:replace="headers/imports.html::imports"></section>
+    <section class="content-header" th:replace="headers/navbar.html::navbar"></section>
+    <main>
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Index</div>
+                        <div class="card-body">
+                            <table th:if="${error}">
+                                <tr>
+                                    <td>Error code:</td>
+                                    <td th:text="${error.code}" style="padding-left: 3em"></td>
+                                </tr>
+                                <tr>
+                                    <td>Error message:</td>
+                                    <td th:text="${error.message}" style="padding-left: 3em"></td>
+                                </tr>
+                            </table>
+
+                            <br/>
+
+                            <table th:if="${tweetList != null && !tweetList.empty}" class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">IdParent</th>
+                                    <th scope="col">IdUser</th>
+                                    <th scope="col">urlImage</th>
+                                    <th scope="col">Timestamp</th>
+                                    <th scope="col">Text</th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="table">
+                                    <th:block th:each="tweet : ${tweetList}">
+                                        <tr>
+                                            <td th:text="${tweet.id}"></td>
+                                            <td th:text="${tweet.idParent}"></td>
+                                            <td th:text="${tweet.idUser}"></td>
+                                            <td th:text="${tweet.urlImage}"></td>
+                                            <td th:text="${tweet.timestamp}"></td>
+                                            <td th:text="${tweet.text}"></td>
+                                            <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
