@@ -25,4 +25,13 @@ public class User {
         this.lastName = lastName;
         this.bio = bio;
     }
+
+    public long getId() { return id; }
+    public String getEmail() { return email; }
+    public String getPassword() { return password; }
+    public String getRole() { return role; }
+    public String getScreenName() { return screenName; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getBio() { return bio; }
 }

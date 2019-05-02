@@ -1,30 +1,37 @@
 <section class="content-header" th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="/">Twitter</a>
+            <td>
+                <a class="navbar-brand img-container" href="/">
+                    <img class="bird" th:src="@{images/bird.png}" style="height: 2em; position: absolute">
+                    <img class="bird_" th:src="@{images/bird_.png}" style="height: 2em">
+                </a>
+            </td>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!--<ul class="navbar-nav m1-auto">-->
-                    <!--<li class="nav-item" th:if="${user != null && user.role == 'ADMIN'}">-->
-                        <!--<a class="nav-link" th:href="@{/ticket}">New Ticket</a>-->
-                    <!--</li>-->
-                    <!--<li class="nav-item">-->
-                        <!--<a class="nav-link" th:href="@{/tickets}">Ticket List</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" th:if="${user == null}">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    <li th:if="${user == null}">
+                        <div class="divider-vertical"></div>
                     </li>
                     <li class="nav-item" th:if="${user == null}">
-                        <a class="nav-link" th:href="@{/user}">Register</a>
+                        <button class="twitter custombutton btn btn-secondary" type="button" href="#" data-toggle="modal" data-target="#login-modal">Login</button>
+                    </li>
+                    <li th:if="${user == null}">
+                        <div class="divider-vertical"></div>
+                    </li>
+                    <li class="nav-item" th:if="${user == null}">
+                        <button class="twitter custombutton btn btn-secondary" type="button" th:href="@{/user}">Register</button>
+                    </li>
+                    <li th:if="${user != null}">
+                        <div class="divider-vertical"></div>
                     </li>
                     <li class="nav-item" th:if="${user != null}">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="twitter custombutton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user"></i>
                                 <span class="nav-item" th:text="${user.firstName}"></span>
                             </button>
@@ -35,23 +42,58 @@
                                 <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                             </div>
                         </div>
+                        <li th:if="${user != null}">
+                            <div class="divider-vertical"></div>
+                        </li>
+                        <li class="nav-item" th:if="${user != null}">
+                            <button class="twitter custombutton btn btn-secondary" type="button" href="#" data-toggle="modal" data-target="#tweet-modal">Tweet</button>
+                        </li>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content loginmodal-container">
-                <h1>Login</h1><br>
-                <form th:action="@{/login}" method="POST">
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <button class="loginmodal-submit btn btn-success" type="submit">Login</button>
-                </form>
-                <div class="login-help">
-                    <a th:href="@{/user}">Register</a>
+                <div class="modal-header">
+                    <h3 class="center-header">Login</h3>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/login}" method="POST">
+                        <div class="form-group">
+                            <input class="form-control" type="email" name="username" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="password" placeholder="Password">
+                        </div>
+                        <button class="twitter form-button btn btn-secondary" type="submit">Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="login-help">
+                        <a th:href="@{/user}">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tweet-modal" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="center-header">New Tweet</h3>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/tweet}" method="POST">
+                        <div class="form-group">
+                            <textarea class="form-control" name="tweet" placeholder="What's up?" style="height: 50%"></textarea>
+                        </div>
+                        <button class="twitter form-button btn btn-secondary" type="submit">Tweet</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -45,7 +45,7 @@ public class MyErrorController implements ErrorController {
         return "index";
     }
 
-    @GetMapping("/error/login")
+    @GetMapping("/loginError")
     public String handleClientLoginError(Model model, HttpServletRequest request) {
         Error error = new Error();
         appendClientErrorInformation(error, request, "Invalid username or password");
@@ -55,7 +55,7 @@ public class MyErrorController implements ErrorController {
 
     @Override
     public String getErrorPath() {
-        return "error";
+        return "";
     }
 
     private void appendExceptionInformation(Error error, HttpClientErrorException exception) {

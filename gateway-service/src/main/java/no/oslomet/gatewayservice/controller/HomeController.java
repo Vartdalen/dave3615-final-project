@@ -26,10 +26,6 @@ public class HomeController {
     public String home(Model model){
         List<Tweet> tweetList = tweetService.getAllTweets();
 
-        for(Tweet tweet: tweetList) {
-            System.out.println(tweet.toString());
-        }
-
         setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
         model.addAttribute("tweetList", tweetList);
         return "index";

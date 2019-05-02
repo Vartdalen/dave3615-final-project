@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/", "/index" , "/loginpage").permitAll()
+                //pages
+                .antMatchers("/", "/index", "/loginpage", "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
 //                .antMatchers("/mytickets").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/userservice/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/error/login")
+                .failureUrl("/loginError")
                 .permitAll()
 
                 .and()
