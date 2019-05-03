@@ -42,14 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //pages
                 .antMatchers(
                         //pages
-                        "/", "/index", "/profile",
+                        "/", "/index",
                         //api
                         "/user",
                         //resources
                         "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
                 .antMatchers(
                         //api
-                        "/tweet").hasAnyRole("USER", "ADMIN")
+                        "/tweet", "/profile").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/userservice/users/**", "/tweetservice/tweets/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
