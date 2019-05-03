@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -18,6 +19,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
     }
 
     @Autowired
@@ -34,10 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 //pages
-                .antMatchers("/", "/index", "/loginpage", "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
+                .antMatchers("/", "/index", "/loginpage", "/user", "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
                 .antMatchers("/tweet").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/userservice/**").hasRole("ADMIN")
+                .antMatchers("/userservice/users/**", "/tweetservice/tweets/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
 
                 .and()
                 .formLogin()
@@ -51,6 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
-                .permitAll();
+                .permitAll()
+
+                .and()
+                .sessionManagement()
+                .maximumSessions(1)
+                .expiredUrl("/");
     }
 }

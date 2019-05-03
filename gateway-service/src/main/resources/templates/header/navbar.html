@@ -2,6 +2,7 @@
     <section class="content-header" th:replace="../static/css/css-navbar.html::css-navbar"></section>
     <section class="content-header" th:replace="modal/modal-login.html::modal-login"></section>
     <section class="content-header" th:replace="modal/modal-tweet.html::modal-tweet"></section>
+    <section class="content-header" th:replace="modal/modal-register.html::modal-register"></section>
 
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
@@ -28,7 +29,7 @@
                         <div class="divider-vertical"></div>
                     </li>
                     <li class="nav-item" th:if="${user == null}">
-                        <button class="twitter custombutton btn btn-secondary" type="button" th:href="@{/user}">Register</button>
+                        <button class="twitter custombutton btn btn-secondary" type="button" href="#" data-toggle="modal" data-target="#register-modal">Register</button>
                     </li>
                     <li th:if="${user != null}">
                         <div class="divider-vertical"></div>
