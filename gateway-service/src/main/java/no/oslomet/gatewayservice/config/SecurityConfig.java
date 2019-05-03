@@ -40,14 +40,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 //pages
-                .antMatchers("/", "/index", "/loginpage", "/user", "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
-                .antMatchers("/tweet").hasAnyRole("USER", "ADMIN")
+                .antMatchers(
+                        //pages
+                        "/", "/index", "/profile",
+                        //api
+                        "/user",
+                        //resources
+                        "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
+                .antMatchers(
+                        //api
+                        "/tweet").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/userservice/users/**", "/tweetservice/tweets/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler())
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
 
                 .and()
                 .formLogin()

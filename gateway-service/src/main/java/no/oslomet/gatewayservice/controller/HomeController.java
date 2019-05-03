@@ -31,6 +31,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/profile")
+    public String profile(Model model){
+        setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        return "profile";
+    }
+
     private void setUserModel(Model model, Authentication auth, UserService userService) {
         Optional<User> user = userService.getUserByEmail(auth.getName());
         if(user.isPresent()) {

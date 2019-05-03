@@ -16,13 +16,13 @@
                             <input class="form-control" name="idUser" type="number" th:value="${user.id}">
                         </div>
                         <div class="form-group" style="display: none">
-                            <input class="form-control" name="urlImage" type="text" value="test">
+                            <input class="form-control" name="urlImage" type="text" value="null">
                         </div>
                         <div class="form-group" style="display: none">
                             <input class="form-control" name="timestamp" type="text" value="2019-04-03 00:16:40">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="text" placeholder="What's up?" style="height: 50%" required></textarea>
+                            <textarea class="form-control" name="text" placeholder="What's up?" maxlength="140" style="height: 50%" required></textarea>
                         </div>
                         <button class="twitter modal-form-button btn btn-secondary" type="submit">Tweet</button>
                     </form>
