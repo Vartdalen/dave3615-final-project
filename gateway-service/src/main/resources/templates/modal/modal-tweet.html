@@ -1,5 +1,6 @@
 <section class="content-header" th:fragment="modal-tweet" xmlns:th="http://www.w3.org/1999/xhtml">
     <section class="content-header" th:replace="../static/css/css-modal.html::css-modal"></section>
+
     <div th:if="${user != null}" class="modal fade" id="tweet-modal" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-container">
