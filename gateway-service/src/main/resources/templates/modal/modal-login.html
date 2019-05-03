@@ -1,10 +1,10 @@
-<section class="content-header" th:fragment="login" xmlns:th="http://www.w3.org/1999/xhtml">
-    <section class="content-header" th:replace="../static/css/modal.html::modal"></section>
+<section class="content-header" th:fragment="modal-login" xmlns:th="http://www.w3.org/1999/xhtml">
+    <section class="content-header" th:replace="../static/css/css-modal.html::css-modal"></section>
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-container modal-form">
                 <div class="modal-header">
-                    <h3 class="center-header">Login</h3>
+                    <h3>Login</h3>
                 </div>
                 <div class="modal-body">
                     <form th:action="@{/login}" method="POST">
@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <input class="form-control" type="password" name="password" placeholder="Password">
                         </div>
-                        <button class="twitter form-button btn btn-secondary" type="submit">Login</button>
+                        <button class="twitter modal-form-button btn btn-secondary" type="submit">Login</button>
                     </form>
                 </div>
                 <div class="modal-footer">

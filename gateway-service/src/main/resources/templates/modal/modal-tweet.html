@@ -1,10 +1,10 @@
-<section class="content-header" th:fragment="tweet" xmlns:th="http://www.w3.org/1999/xhtml">
-    <section class="content-header" th:replace="../static/css/modal.html::modal"></section>
+<section class="content-header" th:fragment="modal-tweet" xmlns:th="http://www.w3.org/1999/xhtml">
+    <section class="content-header" th:replace="../static/css/css-modal.html::css-modal"></section>
     <div th:if="${user != null}" class="modal fade" id="tweet-modal" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-container">
                 <div class="modal-header">
-                    <h3 class="center-header">New Tweet</h3>
+                    <h3>New Tweet</h3>
                 </div>
                 <div class="modal-body">
                     <form th:action="@{/tweet}" modelAttribute="tweet" method="POST">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <textarea class="form-control" name="text" placeholder="What's up?" style="height: 50%"></textarea>
                         </div>
-                        <button class="twitter form-button btn btn-secondary" type="submit">Tweet</button>
+                        <button class="twitter modal-form-button btn btn-secondary" type="submit">Tweet</button>
                     </form>
                 </div>
             </div>
