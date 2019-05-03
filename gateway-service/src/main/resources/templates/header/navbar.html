@@ -1,4 +1,7 @@
 <section class="content-header" th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml">
+    <section class="content-header" th:replace="modal/login.html::login"></section>
+    <section class="content-header" th:replace="modal/tweet.html::tweet"></section>
+
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
             <td>
@@ -55,59 +58,4 @@
         </div>
     </nav>
 
-    <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content loginmodal-container">
-                <div class="modal-header">
-                    <h3 class="center-header">Login</h3>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{/login}" method="POST">
-                        <div class="form-group">
-                            <input class="form-control" type="email" name="username" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="password" name="password" placeholder="Password">
-                        </div>
-                        <button class="twitter form-button btn btn-secondary" type="submit">Login</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="login-help">
-                        <a th:href="@{/user}">Register</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div th:if="${user != null}" class="modal fade" id="tweet-modal" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="center-header">New Tweet</h3>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{/tweet}" modelAttribute="tweet" method="POST">
-                        <div class="form-group" style="display: none">
-                            <input class="form-control" name="idParent" type="text" value="null">
-                        </div>
-                        <div class="form-group" style="display: none">
-                            <input class="form-control" name="idUser" type="number" th:value="${user.id}">
-                        </div>
-                        <div class="form-group" style="display: none">
-                            <input class="form-control" name="urlImage" type="text" value="test">
-                        </div>
-                        <div class="form-group" style="display: none">
-                            <input class="form-control" name="timestamp" type="text" value="2019-04-03 00:16:40">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="text" placeholder="What's up?" style="height: 50%"></textarea>
-                        </div>
-                        <button class="twitter form-button btn btn-secondary" type="submit">Tweet</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
