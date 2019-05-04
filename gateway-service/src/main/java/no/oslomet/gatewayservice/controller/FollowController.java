@@ -21,21 +21,18 @@ public class FollowController {
 
     @PostMapping("/follow")
     public String saveFollow(@RequestParam(value="follower") Long idFollower, @RequestParam(value="followed") Long idFollowed) {
-        System.out.println("follower: " + idFollower + "\nfollowed: " + idFollowed);
-        List<User> userList = userService.getAllUsers();
-        User userFollower = new User();
-        User userFollowed = new User();
+        followService.saveFollow(new Follow(idFollower, idFollowed));
+        return "redirect:/profile/" + userService.getUserById(idFollowed).getScreenName();
+    }
 
-        for (User userInList: userList) {
-            if(userInList.getId() == idFollower) {
-                userFollower = userInList;
-            }
-            if (userInList.getId() == idFollowed) {
-                userFollowed = userInList;
+    @PostMapping("/unfollow")
+    public String unfollow(@RequestParam(value="follower") Long idUnfollower, @RequestParam(value="followed") Long idUnfollowed) {
+        List<Follow> followList = followService.getAllFollows();
+        for(Follow follow : followList) {
+            if(follow.getIdFollower() == idUnfollower && follow.getIdFollowed() == idUnfollowed) {
+                followService.deleteFollowById(follow.getId());
             }
         }
-
-        followService.saveFollow(new Follow(userFollower.getId(), userFollowed.getId()));
-        return "redirect:/profile/" + userFollowed.getScreenName();
+        return "redirect:/profile/" + userService.getUserById(idUnfollowed).getScreenName();
     }
 }
