@@ -4,10 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,8 @@ public class User {
     private String lastName;
     private String bio;
 
-//    private List<Long> followers;
+    @OneToMany(mappedBy = "follower")
+    private Set<Follow> follows;
 
     public User(String email, String password, String role, String screenName, String firstName, String lastName, String bio) {
         this.email = email;
@@ -31,7 +34,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
-//        this.followers = followers;
     }
 
     public long getId() { return id; }
