@@ -43,9 +43,9 @@ public class TweetController {
         return new ResponseEntity<>(tweetService.saveTweet(newTweet), HttpStatus.OK);
     }
 
-    @PutMapping("/tweets/{id}")
-    public Tweet updateTweet(@PathVariable long id,  @RequestBody  Tweet newTweet) {
-        newTweet.setId(id);
+    @PutMapping("/tweets/{newId}")
+    public Tweet updateTweet(@PathVariable long newId,  @RequestBody  Tweet newTweet) {
+        newTweet.setId(newId);
         return tweetService.saveTweet(newTweet);
     }
 }

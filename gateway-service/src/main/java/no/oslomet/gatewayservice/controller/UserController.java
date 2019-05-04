@@ -33,6 +33,13 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("/user/update")
+    public String updateUser(@ModelAttribute("user") User user) {
+        System.out.println(user.toString());
+        userService.updateUser(user.getId(), user);
+        return "redirect:/profile/" + user.getScreenName();
+    }
+
     @GetMapping("/profile/{screenName}")
     public String profile(@PathVariable String screenName, Model model){
         User user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService).get();

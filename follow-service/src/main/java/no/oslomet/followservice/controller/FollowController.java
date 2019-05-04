@@ -52,7 +52,7 @@ public class FollowController {
         return new ResponseEntity<>(followService.saveFollow(newFollow), HttpStatus.OK);
     }
 
-    @PutMapping("/follows/{id}")
+    @PutMapping("/follows/{newId}")
     public Follow updateFollow(@PathVariable long newId, @RequestBody Follow follow) {
         follow.setId(newId);
         return followService.saveFollow(follow);

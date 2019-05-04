@@ -76,8 +76,9 @@ public class UserController {
         return new ResponseEntity<>(userService.saveUser(newUser), HttpStatus.OK);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/users/{newId}")
     public User updateUser(@PathVariable long newId, @RequestBody User user) {
+        System.out.println(newId);
         user.setId(newId);
         return userService.saveUser(user);
     }

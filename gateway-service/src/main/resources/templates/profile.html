@@ -10,6 +10,7 @@
         <section class="content-header" th:replace="header/navbar.html::navbar"></section>
         <section class="content-header" th:replace="header/navbar.html::navbar"></section>
         <section class="content-header" th:replace="../static/css/css-profile.html::css-profile"></section>
+        <section class="content-header" th:replace="modal/modal-edit-profile.html::modal-edit-profile"></section>
 
         <main>
             <div class="container-lg twitter-dark" style="height: 20em"></div>
@@ -47,7 +48,7 @@
                             <li>
                                 <div class="divider-vertical"></div>
                             </li>
-                            <li class="nav-item" th:if="${user != null}">
+                            <li class="nav-item anti-stupid" th:if="${user != null}">
                                 <form th:action="@{/follow}" method="POST" th:if="${followed == null && user2 != null}">
                                     <div class="form-group" style="display: none">
                                         <input type="number" th:name="follower" th:value="${user.id}"/>
@@ -66,7 +67,7 @@
                                     </div>
                                     <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Unfollow</button>
                                 </form>
-                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal" th:if="${user2 == null}">Edit Profile</button>
+                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal" th:if="${user2 == null || user.role == 'ADMIN'}">Edit Profile</button>
                             </li>
                         </ul>
                     </div>

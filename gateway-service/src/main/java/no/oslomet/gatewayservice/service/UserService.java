@@ -57,7 +57,10 @@ public class UserService {
         return response.getBody();
     }
 
-    public void updateUser(long id, User updatedUser) {restTemplate.put(BASE_URL+"/"+id, updatedUser);}
+    public void updateUser(long id, User updatedUser) {
+        updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        restTemplate.put(BASE_URL+"/"+id, updatedUser);
+    }
 
     public void deleteUserById(long id) {
         restTemplate.delete(BASE_URL+"/"+id);
