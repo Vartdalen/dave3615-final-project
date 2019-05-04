@@ -4,7 +4,7 @@
     <section class="content-header" th:replace="modal/modal-tweet.html::modal-tweet"></section>
     <section class="content-header" th:replace="modal/modal-register.html::modal-register"></section>
 
-    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel fixed-top navbar-primary">
+    <nav class="navbar navbar-expand navbar-light navbar-laravel fixed-top navbar-primary">
         <div class="container">
             <td>
                 <a class="navbar-brand bird-cage" href="/">
@@ -13,11 +13,8 @@
                 </a>
             </td>
 
-            <div class="collapse navbar-collapse" id="navbarExpand">
+            <div class="navbar">
                 <ul class="navbar-nav ml-auto">
-                    <li th:if="${user == null}">
-                        <div class="divider-vertical"></div>
-                    </li>
                     <li class="nav-item" th:if="${user == null}">
                         <button class="twitter custombutton btn btn-secondary" type="button" href="#" data-toggle="modal" data-target="#login-modal">Login</button>
                     </li>
@@ -32,7 +29,7 @@
                     </li>
                     <li class="nav-item" th:if="${user != null}">
                         <div class="dropdown">
-                            <button class="twitter custombutton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="twitter custombutton btn btn-secondary dropdown-toggle anti-stupid" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user"></i>
                                 <span class="nav-item" th:text="${user.firstName}"></span>
                             </button>
@@ -53,12 +50,6 @@
 
                 </ul>
             </div>
-
-            <ul class="navbar-nav ml-auto">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpand" aria-controls="navbarExpand" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </ul>
         </div>
     </nav>
 

@@ -11,41 +11,42 @@
 
         <main>
             <div class="container-lg twitter-dark" style="height: 20em"></div>
-            <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top navbar-secondary">
-                <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Left</a>
-                        </li>
-                    </ul>
-                </div>
+            <nav class="navbar navbar-expand navbar-light navbar-laravel fixed-top navbar-secondary">
+                <div class="container">
+                    <td>
+                        <a class="navbar-brand bird-cage" href="/">
+                            <img class="bird" th:src="@{images/bird.png}" style="height: 2em; position: absolute">
+                            <img class="bird_" th:src="@{images/bird_.png}" style="height: 2em">
+                        </a>
+                    </td>
 
-                <div class="mx-auto order-0">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="mx-auto" href="#">Navbar</a>
-                        </li>
-                        <li>
-                            <div class="divider-vertical"></div>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="mx-auto" href="#">Navbar</a>
-                        </li>
-                        <li>
-                            <div class="divider-vertical"></div>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="mx-auto" href="#">Navbar</a>
-                        </li>
-                    </ul>
-                </div>
+                    <div style="white-space: nowrap">
+                        <a class="navbar-brand" href="#"></a>
+                        <a class="navbar-brand" href="#"></a>
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
 
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                    </ul>
+                    <div class="navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li>
+                                <div class="divider-vertical"></div>
+                            </li>
+                            <li class="nav-item" th:if="${user != null}">
+                                <form th:action="@{/follow}" method="POST">
+                                    <div class="form-group" style="display: none">
+                                        <input type="number" th:name="follower" th:value="${user.id}"/>
+                                    </div>
+                                    <div class="form-group" style="display: none">
+                                        <input type="number" th:name="followed" value="2"/>
+                                    </div>
+                                    <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Follow</button>
+                                </form>
+                            </li>
+<!--                            <li class="nav-item" th:if="${user != null}">-->
+<!--                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>-->
+<!--                            </li>-->
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <div class="container-lg">

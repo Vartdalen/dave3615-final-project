@@ -47,6 +47,12 @@ public class UserService {
         return response.getBody();
     }
 
+//    public String followUser(List<Long> users) {
+//        ResponseEntity<String> response;
+//        response = restTemplate.postForEntity(BASE_URL, users, String.class);
+//        return response.getBody();
+//    }
+
     public void updateUser(long id, User updatedUser) { restTemplate.put(BASE_URL+"/"+id, updatedUser); }
 
     public void deleteUserById(long id) {

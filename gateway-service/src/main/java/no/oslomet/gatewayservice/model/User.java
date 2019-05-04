@@ -1,18 +1,30 @@
 package no.oslomet.gatewayservice.model;
 
 import lombok.Data;
+import lombok.experimental.Delegate;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Data
 public class User {
+    private interface SimpleCollection {
+        boolean add(long follower);
+        boolean remove(long follower);
+    }
+
     private long id;
     private String email;
     private String password;
     private String role;
     private String screenName;
-
     private String firstName;
     private String lastName;
     private String bio;
+
+    @Delegate(types=SimpleCollection.class)
+    private final List<Long> followers = new ArrayList<Long>();
 
     public User() {}
 
@@ -35,6 +47,7 @@ public class User {
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
     public String getBio() { return bio; }
+    public Collection<Long> getFollowers() { return followers; }
 
     public void setId(long id) { this.id = id; }
     public void setEmail(String email) { this.email = email; }

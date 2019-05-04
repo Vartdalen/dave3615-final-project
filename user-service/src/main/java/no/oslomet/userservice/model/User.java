@@ -3,6 +3,7 @@ package no.oslomet.userservice.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +21,8 @@ public class User {
     private String lastName;
     private String bio;
 
+//    private List<Long> followers;
+
     public User(String email, String password, String role, String screenName, String firstName, String lastName, String bio) {
         this.email = email;
         this.password = password;
@@ -28,6 +31,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
+//        this.followers = followers;
     }
 
     public long getId() { return id; }

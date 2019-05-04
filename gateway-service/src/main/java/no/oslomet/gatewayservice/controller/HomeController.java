@@ -40,6 +40,7 @@ public class HomeController {
     private void setUserModel(Model model, Authentication auth, UserService userService) {
         Optional<User> user = userService.getUserByEmail(auth.getName());
         if(user.isPresent()) {
+            System.out.println(user.toString());
             model.addAttribute("user", user.get());
         }
     }
