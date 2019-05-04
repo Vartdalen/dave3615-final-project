@@ -22,23 +22,22 @@
                         </a>
                     </div>
 
-                    <div class="anti-stupid">
+                    <div class="circle anti-stupid">
                         <table>
                             <thead>
-                                <tr>
-                                    <th class="navbar-brand navbar-header-md col1" scope="col">Followers</th>
-                                    <th class="navbar-brand navbar-header-sm col2" scope="col">Following</th>
-                                    <th class="navbar-brand navbar-header-sm col3" scope="col">Tweets</th>
-                                </tr>
+                            <tr>
+                                <th class="navbar-brand navbar-header-md col1" scope="col">Followers</th>
+                                <th class="navbar-brand navbar-header-sm col2" scope="col">Following</th>
+                                <th class="navbar-brand navbar-header-sm col3" scope="col">Tweets</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="navbar-brand navbar-header-lg col1" th:if="${user2 != null}"><h3 th:text="${user2.id}"></h3></td>
-                                    <td class="navbar-brand navbar-header-lg col1" th:if="${user != null && user2 == null}"><h3 th:text="${user.id}"></h3></td>
+                            <tr>
+                                <td class="navbar-brand navbar-header-lg col1"><h3 th:text="${followers}"></h3></td>
 
-                                    <td class="navbar-brand navbar-header-md col2"><h4>X</h4></td>
-                                    <td class="navbar-brand navbar-header-md col3"><h4>X</h4></td>
-                                </tr>
+                                <td class="navbar-brand navbar-header-md col2"><h4>X</h4></td>
+                                <td class="navbar-brand navbar-header-md col3"><h4>X</h4></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -74,6 +73,7 @@
                 </div>
             </nav>
             <div class="container-lg">
+
             </div>
         </main>
     </body>
