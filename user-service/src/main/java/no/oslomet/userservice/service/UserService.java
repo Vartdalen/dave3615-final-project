@@ -26,10 +26,11 @@ public class UserService {
         return userRepository.getUserByEmail(email).get();
     }
 
-    public User saveUser(User user) {
-        if(userRepository.getUserByEmail(user.getEmail()).isPresent()) {
+    public User saveUser(User user, boolean override) {
+        if(userRepository.getUserByEmail(user.getEmail()).isPresent() && !override) {
             throw new UserExistsException();
         }
+        System.out.println(user.toString());
         return userRepository.save(user);
     }
 

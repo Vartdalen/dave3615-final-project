@@ -34,18 +34,15 @@ public class UserController {
         List<User> userList = userService.getAllUsers();
         User user = new User();
         for (User userInList: userList) {
-            if(userInList.getFollowers().isEmpty()) {
-                userInList.getFollowers().add(follower);
-                user = userInList;
-            } else if (userInList.getId() == followed) {
+            if (userInList.getId() == followed) {
                 Collection<Long> followerList = userInList.getFollowers();
                 for (long followerInCollection : followerList) {
                     if (followerInCollection == follower) {
                         return "redirect:/";
                     }
-                    userInList.getFollowers().add(follower);
-                    user = userInList;
                 }
+                userInList.getFollowers().add(follower);
+                user = userInList;
             }
         }
         userService.updateUser(user.getId(), user);
