@@ -3,7 +3,6 @@ package no.oslomet.userservice.model.database;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Data
@@ -21,9 +20,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String bio;
-
-    @OneToMany(mappedBy = "followed")
-    private Set<Follow> followers;
 
     public User(String email, String password, String role, String screenName, String firstName, String lastName, String bio) {
         this.email = email;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,25 +26,15 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email).get();
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
     }
 
-    public User getUserByScreenName(String screenName) {
-        return userRepository.getUserByScreenName(screenName).get();
+    public Optional<User> getUserByScreenName(String screenName) {
+        return userRepository.getUserByScreenName(screenName);
     }
 
-    public User saveUser(User user, boolean override) {
-        System.out.println(user);
-        Matcher m = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])").matcher(user.getEmail());
-        Matcher m2 = Pattern.compile("^[^\\W_]+$").matcher(user.getScreenName());
-        if(!m.matches() || !m2.matches()) {
-            throw new InvalidInputException();
-        }
-        if((userRepository.getUserByEmail(user.getEmail()).isPresent() || userRepository.getUserByScreenName(user.getScreenName()).isPresent()) && !override) {
-            throw new UserExistsException();
-        }
-        System.out.println(user.toString());
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 

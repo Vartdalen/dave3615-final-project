@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.csrf().disable();
         http.authorizeRequests()
-                //pages
+                //permitAll
                 .antMatchers(
                         //pages
                         "/", "/index",
@@ -47,10 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user",
                         //resources
                         "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
+                //user/admin
                 .antMatchers(
                         //api
-                        "/tweet", "/profile/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/userservice/users/**", "/tweetservice/tweets/**").hasRole("ADMIN")
+                        "/tweet", "/follow", "/profile/**").hasAnyRole("USER", "ADMIN")
+                //admin
+                .antMatchers("/userservice/users/**", "/tweetservice/tweets/**", "followservice/follows/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
