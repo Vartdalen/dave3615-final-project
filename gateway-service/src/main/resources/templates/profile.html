@@ -8,22 +8,39 @@
     <body>
         <section class="content-header" th:replace="header/imports.html::imports"></section>
         <section class="content-header" th:replace="header/navbar.html::navbar"></section>
+        <section class="content-header" th:replace="header/navbar.html::navbar"></section>
+        <section class="content-header" th:replace="../static/css/css-profile.html::css-profile"></section>
 
         <main>
             <div class="container-lg twitter-dark" style="height: 20em"></div>
             <nav class="navbar navbar-expand navbar-light navbar-laravel fixed-top navbar-secondary">
                 <div class="container">
-                    <td>
+                    <div class="navbar">
                         <a class="navbar-brand bird-cage" href="/">
                             <img class="bird" th:src="@{/images/bird.png}" style="height: 2em; position: absolute">
                             <img class="bird_" th:src="@{/images/bird_.png}" style="height: 2em">
                         </a>
-                    </td>
+                    </div>
 
-                    <div style="white-space: nowrap">
-                        <div class="navbar-brand" href="#"></div>
-                        <div class="navbar-brand" href="#"></div>
-                        <div class="navbar-brand" href="#"></div>
+                    <div class="anti-stupid">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="navbar-brand navbar-header-md col1" scope="col">Followers</th>
+                                    <th class="navbar-brand navbar-header-sm col2" scope="col">Following</th>
+                                    <th class="navbar-brand navbar-header-sm col3" scope="col">Tweets</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="navbar-brand navbar-header-lg col1" th:if="${user2 != null}"><h3 th:text="${user2.id}"></h3></td>
+                                    <td class="navbar-brand navbar-header-lg col1" th:if="${user != null && user2 == null}"><h3 th:text="${user.id}"></h3></td>
+
+                                    <td class="navbar-brand navbar-header-md col2"><h4>X</h4></td>
+                                    <td class="navbar-brand navbar-header-md col3"><h4>X</h4></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="navbar">
