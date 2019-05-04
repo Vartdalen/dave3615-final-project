@@ -32,7 +32,12 @@ public class MyErrorController implements ErrorController {
         Error error = new Error();
         appendExceptionInformation(error, exception);
         model.addAttribute("error", error);
-        setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+
+        Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        if(user.isPresent()) {
+            model.addAttribute("user", user.get());
+        }
+
         return "index";
     }
 
@@ -41,7 +46,12 @@ public class MyErrorController implements ErrorController {
         Error error = new Error();
         appendClientErrorInformation(error, request, "Client server error");
         model.addAttribute("error", error);
-        setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+
+        Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        if(user.isPresent()) {
+            model.addAttribute("user", user.get());
+        }
+
         return "index";
     }
 
@@ -83,10 +93,7 @@ public class MyErrorController implements ErrorController {
         }
     }
 
-    private void setUserModel(Model model, Authentication auth, UserService userService) {
-        Optional<User> user = userService.getUserByEmail(auth.getName());
-        if(user.isPresent()) {
-            model.addAttribute("user", user.get());
-        }
+    private Optional<User> getUserSession(Model model, Authentication auth, UserService userService) {
+        return userService.getUserByEmail(auth.getName());
     }
 }

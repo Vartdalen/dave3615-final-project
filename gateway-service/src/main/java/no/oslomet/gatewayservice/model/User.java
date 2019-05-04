@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.experimental.Delegate;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -47,7 +46,7 @@ public class User {
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
     public String getBio() { return bio; }
-    public Collection<Long> getFollowers() { return followers; }
+    public List<Long> getFollowers() { return followers; }
 
     public void setId(long id) { this.id = id; }
     public void setEmail(String email) { this.email = email; }

@@ -40,18 +40,22 @@ public class UserService {
         }
     }
 
+    public Optional<User> getUserByScreenName(String screenName) {
+        ResponseEntity<User> response;
+        try {
+            response = restTemplate.getForEntity(BASE_URL+"/"+screenName, User.class);
+            return Optional.ofNullable(response.getBody());
+        } catch (RestClientException e) {
+            return Optional.empty();
+        }
+    }
+
     public User saveUser(User newUser) {
         ResponseEntity<User> response;
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         response = restTemplate.postForEntity(BASE_URL, newUser, User.class);
         return response.getBody();
     }
-
-//    public String followUser(List<Long> users) {
-//        ResponseEntity<String> response;
-//        response = restTemplate.postForEntity(BASE_URL, users, String.class);
-//        return response.getBody();
-//    }
 
     public void updateUser(long id, User updatedUser) { restTemplate.put(BASE_URL+"/"+id, updatedUser); }
 

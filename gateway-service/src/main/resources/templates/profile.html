@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:an="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>Twitter</title>
@@ -15,15 +15,15 @@
                 <div class="container">
                     <td>
                         <a class="navbar-brand bird-cage" href="/">
-                            <img class="bird" th:src="@{images/bird.png}" style="height: 2em; position: absolute">
-                            <img class="bird_" th:src="@{images/bird_.png}" style="height: 2em">
+                            <img class="bird" th:src="@{/images/bird.png}" style="height: 2em; position: absolute">
+                            <img class="bird_" th:src="@{/images/bird_.png}" style="height: 2em">
                         </a>
                     </td>
 
                     <div style="white-space: nowrap">
-                        <a class="navbar-brand" href="#"></a>
-                        <a class="navbar-brand" href="#"></a>
-                        <a class="navbar-brand" href="#"></a>
+                        <div class="navbar-brand" href="#"></div>
+                        <div class="navbar-brand" href="#"></div>
+                        <div class="navbar-brand" href="#"></div>
                     </div>
 
                     <div class="navbar">
@@ -32,19 +32,17 @@
                                 <div class="divider-vertical"></div>
                             </li>
                             <li class="nav-item" th:if="${user != null}">
-                                <form th:action="@{/follow}" method="POST">
+                                <form th:action="@{/follow}" method="POST" th:if="${user2 != null}">
                                     <div class="form-group" style="display: none">
                                         <input type="number" th:name="follower" th:value="${user.id}"/>
                                     </div>
                                     <div class="form-group" style="display: none">
-                                        <input type="number" th:name="followed" value="2"/>
+                                        <input type="number" th:name="followed" th:value="${user2.id}"/>
                                     </div>
                                     <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Follow</button>
                                 </form>
+                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal" th:if="${user2 == null}">Edit Profile</button>
                             </li>
-<!--                            <li class="nav-item" th:if="${user != null}">-->
-<!--                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>-->
-<!--                            </li>-->
                         </ul>
                     </div>
                 </div>

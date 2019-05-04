@@ -25,23 +25,17 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model){
         List<Tweet> tweetList = tweetService.getAllTweets();
-
-        setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
         model.addAttribute("tweetList", tweetList);
-        return "index";
-    }
 
-    @GetMapping("/profile")
-    public String profile(Model model){
-        setUserModel(model, SecurityContextHolder.getContext().getAuthentication(), userService);
-        return "profile";
-    }
-
-    private void setUserModel(Model model, Authentication auth, UserService userService) {
-        Optional<User> user = userService.getUserByEmail(auth.getName());
+        Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
         if(user.isPresent()) {
             System.out.println(user.toString());
             model.addAttribute("user", user.get());
         }
+        return "index";
+    }
+
+    private Optional<User> getUserSession(Model model, Authentication auth, UserService userService) {
+        return userService.getUserByEmail(auth.getName());
     }
 }

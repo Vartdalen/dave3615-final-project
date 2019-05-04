@@ -8,8 +8,8 @@
         <div class="container">
             <td>
                 <a class="navbar-brand bird-cage" href="/">
-                    <img class="bird" th:src="@{images/bird.png}" style="height: 2em; position: absolute">
-                    <img class="bird_" th:src="@{images/bird_.png}" style="height: 2em">
+                    <img class="bird" th:src="@{/images/bird.png}" style="height: 2em; position: absolute">
+                    <img class="bird_" th:src="@{/images/bird_.png}" style="height: 2em">
                 </a>
             </td>
 
@@ -31,12 +31,12 @@
                         <div class="dropdown">
                             <button class="twitter custombutton btn btn-secondary dropdown-toggle anti-stupid" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user"></i>
-                                <span class="nav-item" th:text="${user.firstName}"></span>
+                                <span class="nav-item" th:text="${user.screenName}"></span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item disabled" style="color: #a0a0a0">Role: <span th:text="${user.role}"></span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
+                                <a class="dropdown-item" th:href="@{/profile/} + ${user.screenName}">My Profile</a>
                                 <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                             </div>
                         </div>

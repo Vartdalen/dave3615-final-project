@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
                 .antMatchers(
                         //api
-                        "/tweet", "/profile").hasAnyRole("USER", "ADMIN")
+                        "/tweet", "/profile/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/userservice/users/**", "/tweetservice/tweets/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 

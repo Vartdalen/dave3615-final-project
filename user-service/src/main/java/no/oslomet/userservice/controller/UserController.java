@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 public class UserController {
@@ -35,7 +37,11 @@ public class UserController {
             return new ResponseEntity<>(userService.getUserById(parsedId), HttpStatus.OK);
         } catch (NumberFormatException e) {
             try {
-                return new ResponseEntity<>(userService.getUserByEmail(id), HttpStatus.OK);
+                Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(id);
+                while (m.find()) {
+                    return new ResponseEntity<>(userService.getUserByEmail(id), HttpStatus.OK);
+                }
+                return new ResponseEntity<>(userService.getUserByScreenName(id), HttpStatus.OK);
             } catch (NoSuchElementException e2) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

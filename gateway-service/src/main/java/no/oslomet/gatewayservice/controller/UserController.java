@@ -3,16 +3,14 @@ package no.oslomet.gatewayservice.controller;
 import no.oslomet.gatewayservice.model.User;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -28,24 +26,46 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/profile/{screenName}")
+    public String profile(@PathVariable String screenName, Model model){
+        Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        if(user.isPresent()) {
+            model.addAttribute("user", user.get());
+        }
+
+        Optional<User> user2 = userService.getUserByScreenName(screenName);
+        if(user2.isPresent()) {
+            if(user.get().getId() != user2.get().getId()) {
+                model.addAttribute("user2", user2.get());
+            }
+        }
+        return "profile";
+    }
+
     //non rest
     @PostMapping("/follow")
     public String followUser(@RequestParam(value="follower",required=true) Long follower, @RequestParam(value="followed",required=true) Long followed) {
+        System.out.println("follower: " + follower + "\nfollowed: " + followed);
         List<User> userList = userService.getAllUsers();
         User user = new User();
         for (User userInList: userList) {
             if (userInList.getId() == followed) {
-                Collection<Long> followerList = userInList.getFollowers();
+                List<Long> followerList = userInList.getFollowers();
                 for (long followerInCollection : followerList) {
                     if (followerInCollection == follower) {
-                        return "redirect:/";
+                        return "redirect:/profile/" + userInList.getScreenName();
                     }
                 }
                 userInList.getFollowers().add(follower);
                 user = userInList;
             }
         }
+        System.out.println(user.getFollowers().toString());
         userService.updateUser(user.getId(), user);
-        return "redirect:/profile";
+        return "redirect:/profile/" + user.getScreenName();
+    }
+
+    private Optional<User> getUserSession(Model model, Authentication auth, UserService userService) {
+        return userService.getUserByEmail(auth.getName());
     }
 }

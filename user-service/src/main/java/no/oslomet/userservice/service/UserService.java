@@ -26,8 +26,12 @@ public class UserService {
         return userRepository.getUserByEmail(email).get();
     }
 
+    public User getUserByScreenName(String screenName) {
+        return userRepository.getUserByScreenName(screenName).get();
+    }
+
     public User saveUser(User user, boolean override) {
-        if(userRepository.getUserByEmail(user.getEmail()).isPresent() && !override) {
+        if((userRepository.getUserByEmail(user.getEmail()).isPresent() || userRepository.getUserByScreenName(user.getScreenName()).isPresent()) && !override) {
             throw new UserExistsException();
         }
         System.out.println(user.toString());
