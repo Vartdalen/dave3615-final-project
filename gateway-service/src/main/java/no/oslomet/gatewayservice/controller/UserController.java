@@ -32,17 +32,20 @@ public class UserController {
     @GetMapping("/profile/{screenName}")
     public String profile(@PathVariable String screenName, Model model){
         Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        Optional<User> user2 = userService.getUserByScreenName(screenName);
+
         if(user.isPresent()) {
             model.addAttribute("user", user.get());
         }
 
-        Optional<User> user2 = userService.getUserByScreenName(screenName);
+        //on other person's profile
         if(user2.isPresent()) {
             if(user.get().getId() != user2.get().getId()) {
                 model.addAttribute("user2", user2.get());
             }
         }
 
+        //already following other person
         List<Follow> followList = followService.getAllFollows();
         for(Follow follow: followList) {
             if(follow.getIdFollower() == user.get().getId() && follow.getIdFollowed() == user2.get().getId()) {
