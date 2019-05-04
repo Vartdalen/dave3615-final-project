@@ -36,35 +36,17 @@ public class UserController {
         List<Follow> followList = followService.getAllFollows();
 
         model.addAttribute("user", user);
-        setModelUser2AndFollowers(user, user2, followList, model);
+        setModelUser2AndFollow(user, user2, followList, model);
         setModelFollowed(user, user2, followList, model);
 
         return "profile";
     }
 
+
+    //private helper methods
+
     private Optional<User> getUserSession(Model model, Authentication auth, UserService userService) {
         return userService.getUserByEmail(auth.getName());
-    }
-
-    //on other person's profile, adds second profile to profile page
-    //also adds correct amount of followers depending on page
-    private void setModelUser2AndFollowers (User user, User user2, List<Follow> followList, Model model) {
-        int followers = 0;
-        if(user.getId() != user2.getId()) {
-            for(Follow follow : followList) {
-                if (follow.getIdFollowed() == user2.getId()) {
-                    followers++;
-                }
-            }
-            model.addAttribute("user2", user2);
-        } else {
-            for(Follow follow : followList) {
-                if (follow.getIdFollowed() == user.getId()) {
-                    followers++;
-                }
-            }
-        }
-        model.addAttribute("followers", followers);
     }
 
     //already following other person
@@ -75,5 +57,43 @@ public class UserController {
             }
         }
     }
+
+    //on other person's profile, adds second profile to profile page
+    //also adds correct amount of followers depending on page
+    private void setModelUser2AndFollow (User user, User user2, List<Follow> followList, Model model) {
+        int followers = 0;
+        int following = 0;
+        if(user.getId() != user2.getId()) {
+            //on user2 page
+            followers = getFollowers(user2, followList);
+            following = getFollowing(user2, followList);
+            model.addAttribute("user2", user2);
+        } else {
+            followers = getFollowers(user, followList);
+            following = getFollowing(user, followList);
+        }
+        model.addAttribute("followers", followers);
+        model.addAttribute("following", following);
+    }
+            //private helper methods for previous method
+            private int getFollowers (User user, List<Follow> followList) {
+                int followers = 0;
+                for(Follow follow : followList) {
+                    if (follow.getIdFollowed() == user.getId()) {
+                        followers++;
+                    }
+                }
+                return followers;
+            }
+
+            private int getFollowing (User user, List<Follow> followList) {
+                int following = 0;
+                for(Follow follow : followList) {
+                    if (follow.getIdFollower() == user.getId()) {
+                        following++;
+                    }
+                }
+                return following;
+            }
 
 }
