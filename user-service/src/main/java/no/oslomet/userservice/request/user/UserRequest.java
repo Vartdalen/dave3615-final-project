@@ -1,4 +1,4 @@
-package no.oslomet.userservice.request;
+package no.oslomet.userservice.request.user;
 
 import lombok.Data;
 import no.oslomet.userservice.model.User;
@@ -9,12 +9,14 @@ public class UserRequest {
 
     private User user;
     private String requestType;
+    private User followed;
 
     public UserRequest() {}
 
-    public UserRequest(User user, String requestType) {
+    public UserRequest(User user, String requestType, User followed) {
         this.user = user;
         this.requestType = requestType;
+        this.followed = followed;
     }
 
     public User getUser() { return user; }

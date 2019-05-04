@@ -1,7 +1,7 @@
 package no.oslomet.userservice.controller;
 
 import no.oslomet.userservice.model.User;
-import no.oslomet.userservice.request.UserRequest;
+import no.oslomet.userservice.request.user.UserRequest;
 import no.oslomet.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -64,7 +64,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public User updateUser(@PathVariable long id, @RequestBody UserRequest newUserRequest) {
         if(newUserRequest.getRequestType().equals(UserRequest.REQUEST_FOLLOW)) {
-
+            System.out.println(newUserRequest.toString());
         }
         newUserRequest.getUser().setId(id);
         return userService.saveUser(newUserRequest.getUser(), true);

@@ -1,7 +1,6 @@
 package no.oslomet.gatewayservice.controller;
 
 import no.oslomet.gatewayservice.model.User;
-import no.oslomet.gatewayservice.request.user.FollowRequest;
 import no.oslomet.gatewayservice.request.user.UserRequest;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +45,22 @@ public class UserController {
 
     //non rest
     @PostMapping("/follow")
-    public String followUser(@RequestParam(value="follower",required=true) Long follower, @RequestParam(value="followed",required=true) Long followed) {
-        System.out.println("follower: " + follower + "\nfollowed: " + followed);
+    public String followUser(@RequestParam(value="follower") Long idFollower, @RequestParam(value="followed") Long idFollowed) {
+        System.out.println("follower: " + idFollower + "\nfollowed: " + idFollowed);
         List<User> userList = userService.getAllUsers();
-        User user = new User();
+        User userFollower = new User();
+        User userFollowed = new User();
+
         for (User userInList: userList) {
-            if (userInList.getId() == followed) {
-                user = userInList;
+            if(userInList.getId() == idFollower) {
+                userFollower = userInList;
+            }
+            if (userInList.getId() == idFollowed) {
+                userFollowed = userInList;
             }
         }
-        userService.updateUser(user.getId(), new FollowRequest(user, FollowRequest.REQUEST_FOLLOW));
-        return "redirect:/profile/" + user.getScreenName();
+        userService.updateUser(userFollowed.getId(), new UserRequest(userFollowed, UserRequest.REQUEST_FOLLOW, userFollower));
+        return "redirect:/profile/" + userFollowed.getScreenName();
     }
 
     private Optional<User> getUserSession(Model model, Authentication auth, UserService userService) {
