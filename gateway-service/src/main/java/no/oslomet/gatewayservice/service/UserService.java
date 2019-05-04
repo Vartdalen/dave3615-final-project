@@ -1,6 +1,7 @@
 package no.oslomet.gatewayservice.service;
 
 import no.oslomet.gatewayservice.model.User;
+import no.oslomet.gatewayservice.request.user.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,7 +58,7 @@ public class UserService {
         return response.getBody();
     }
 
-    public void updateUser(long id, User updatedUser) { restTemplate.put(BASE_URL+"/"+id, updatedUser); }
+    public void updateUser(long id, UserRequest updatedUserRequest) {restTemplate.put(BASE_URL+"/"+id, updatedUserRequest);}
 
     public void deleteUserById(long id) {
         restTemplate.delete(BASE_URL+"/"+id);

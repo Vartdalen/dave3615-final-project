@@ -1,6 +1,8 @@
 package no.oslomet.gatewayservice.controller;
 
 import no.oslomet.gatewayservice.model.User;
+import no.oslomet.gatewayservice.request.user.FollowRequest;
+import no.oslomet.gatewayservice.request.user.UserRequest;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -48,7 +50,12 @@ public class UserController {
         System.out.println("follower: " + follower + "\nfollowed: " + followed);
         List<User> userList = userService.getAllUsers();
         User user = new User();
-        userService.updateUser(user.getId(), user);
+        for (User userInList: userList) {
+            if (userInList.getId() == followed) {
+                user = userInList;
+            }
+        }
+        userService.updateUser(user.getId(), new FollowRequest(user, FollowRequest.REQUEST_FOLLOW));
         return "redirect:/profile/" + user.getScreenName();
     }
 
