@@ -1,8 +1,10 @@
 package no.oslomet.gatewayservice.controller;
 
 import no.oslomet.gatewayservice.model.Follow;
+import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
 import no.oslomet.gatewayservice.service.FollowService;
+import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private FollowService followService;
+    @Autowired
+    private TweetService tweetService;
 
     @PostMapping("/user")
     public String saveUser(@ModelAttribute("user") User newUser) {
@@ -34,9 +38,10 @@ public class UserController {
         User user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService).get();
         User user2 = userService.getUserByScreenName(screenName).get();
         List<Follow> followList = followService.getAllFollows();
+        List<Tweet> tweetList = tweetService.getAllTweets();
 
         model.addAttribute("user", user);
-        setModelUser2AndFollow(user, user2, followList, model);
+        setModelUser2FollowTweet(user, user2, followList, tweetList, model);
         setModelFollowed(user, user2, followList, model);
 
         return "profile";
@@ -60,20 +65,24 @@ public class UserController {
 
     //on other person's profile, adds second profile to profile page
     //also adds correct amount of followers depending on page
-    private void setModelUser2AndFollow (User user, User user2, List<Follow> followList, Model model) {
+    private void setModelUser2FollowTweet (User user, User user2, List<Follow> followList, List<Tweet> tweetList, Model model) {
         int followers = 0;
         int following = 0;
+        int tweets = 0;
         if(user.getId() != user2.getId()) {
             //on user2 page
             followers = getFollowers(user2, followList);
             following = getFollowing(user2, followList);
+            tweets = getTweets(user2, tweetList);
             model.addAttribute("user2", user2);
         } else {
             followers = getFollowers(user, followList);
             following = getFollowing(user, followList);
+            tweets = getTweets(user, tweetList);
         }
         model.addAttribute("followers", followers);
         model.addAttribute("following", following);
+        model.addAttribute("tweets", tweets);
     }
             //private helper methods for previous method
             private int getFollowers (User user, List<Follow> followList) {
@@ -94,6 +103,16 @@ public class UserController {
                     }
                 }
                 return following;
+            }
+
+            private int getTweets (User user, List<Tweet> tweetList) {
+                int tweets = 0;
+                for (Tweet tweet: tweetList) {
+                    if(tweet.getIdUser() == user.getId()) {
+                        tweets++;
+                    }
+                }
+                return tweets;
             }
 
 }
