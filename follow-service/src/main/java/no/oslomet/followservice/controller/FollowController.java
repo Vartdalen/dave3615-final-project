@@ -1,6 +1,8 @@
 package no.oslomet.followservice.controller;
 
 import no.oslomet.followservice.model.database.Follow;
+import no.oslomet.followservice.model.exception.FollowExistsException;
+import no.oslomet.followservice.model.exception.FollowSelfException;
 import no.oslomet.followservice.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -41,9 +43,12 @@ public class FollowController {
     public ResponseEntity<Follow> saveFollow(@RequestBody Follow newFollow) {
         List<Follow> followList = followService.getAllFollows();
         for (Follow follow : followList) {
-
+            if(follow.getIdFollower() == newFollow.getIdFollower() && follow.getIdFollowed() == newFollow.getIdFollowed()) {
+                throw new FollowExistsException();
+            } else if (newFollow.getIdFollower() == newFollow.getIdFollowed()) {
+                throw new FollowSelfException();
+            }
         }
-        System.out.println(newFollow);
         return new ResponseEntity<>(followService.saveFollow(newFollow), HttpStatus.OK);
     }
 

@@ -1,6 +1,8 @@
 package no.oslomet.gatewayservice.controller;
 
+import no.oslomet.gatewayservice.model.Follow;
 import no.oslomet.gatewayservice.model.User;
+import no.oslomet.gatewayservice.service.FollowService;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -16,6 +19,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private FollowService followService;
 
     @PostMapping("/user")
     public String saveUser(@ModelAttribute("user") User newUser) {
@@ -37,6 +42,14 @@ public class UserController {
                 model.addAttribute("user2", user2.get());
             }
         }
+
+        List<Follow> followList = followService.getAllFollows();
+        for(Follow follow: followList) {
+            if(follow.getIdFollower() == user.get().getId() && follow.getIdFollowed() == user2.get().getId()) {
+                model.addAttribute("followed", new Object());
+            }
+        }
+
         return "profile";
     }
 
