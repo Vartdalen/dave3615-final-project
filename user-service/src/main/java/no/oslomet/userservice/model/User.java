@@ -23,8 +23,8 @@ public class User {
     private String lastName;
     private String bio;
 
-    @OneToMany(mappedBy = "follower")
-    private Set<Follow> follows;
+    @OneToMany(mappedBy = "followed")
+    private Set<Follow> followers;
 
     public User(String email, String password, String role, String screenName, String firstName, String lastName, String bio) {
         this.email = email;

@@ -48,19 +48,6 @@ public class UserController {
         System.out.println("follower: " + follower + "\nfollowed: " + followed);
         List<User> userList = userService.getAllUsers();
         User user = new User();
-        for (User userInList: userList) {
-            if (userInList.getId() == followed) {
-                List<Long> followerList = userInList.getFollowers();
-                for (long followerInCollection : followerList) {
-                    if (followerInCollection == follower) {
-                        return "redirect:/profile/" + userInList.getScreenName();
-                    }
-                }
-                userInList.getFollowers().add(follower);
-                user = userInList;
-            }
-        }
-        System.out.println(user.getFollowers().toString());
         userService.updateUser(user.getId(), user);
         return "redirect:/profile/" + user.getScreenName();
     }

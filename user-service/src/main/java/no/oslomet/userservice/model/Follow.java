@@ -14,13 +14,14 @@ public class Follow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_follow")
     private long id;
-    @ManyToOne
-    @JoinColumn(name="id_follower")
-    private User follower;
-    private long idFollowed;
+    private long idFollower;
 
-    public Follow(User follower, long idFollowed) {
-        this.follower = follower;
-        this.idFollowed = idFollowed;
+    @ManyToOne
+    @JoinColumn(name="id_followed")
+    private User followed;
+
+    public Follow(long idFollower, User followed) {
+        this.idFollower = idFollower;
+        this.followed = followed;
     }
 }

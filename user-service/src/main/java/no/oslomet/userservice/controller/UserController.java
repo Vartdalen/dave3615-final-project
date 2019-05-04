@@ -56,6 +56,7 @@ public class UserController {
     @PostMapping("/users")
     @ResponseBody
     public ResponseEntity<User> saveUser(@RequestBody User newUser) {
+        System.out.println(newUser);
         return new ResponseEntity<>(userService.saveUser(newUser, false), HttpStatus.OK);
     }
 
