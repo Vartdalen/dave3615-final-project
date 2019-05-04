@@ -1,7 +1,7 @@
 package no.oslomet.gatewayservice.service;
 
 import no.oslomet.gatewayservice.model.User;
-import no.oslomet.gatewayservice.request.user.UserRequest;
+import no.oslomet.gatewayservice.model.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

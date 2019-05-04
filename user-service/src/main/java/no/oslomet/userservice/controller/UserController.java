@@ -1,7 +1,7 @@
 package no.oslomet.userservice.controller;
 
-import no.oslomet.userservice.model.User;
-import no.oslomet.userservice.request.user.UserRequest;
+import no.oslomet.userservice.model.database.User;
+import no.oslomet.userservice.model.request.UserRequest;
 import no.oslomet.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

@@ -1,4 +1,4 @@
-package no.oslomet.userservice.model;
+package no.oslomet.userservice.model.database;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

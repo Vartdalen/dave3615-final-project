@@ -1,6 +1,6 @@
 package no.oslomet.userservice.repository;
 
-import no.oslomet.userservice.model.User;
+import no.oslomet.userservice.model.database.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package no.oslomet.gatewayservice.request.user;
+package no.oslomet.userservice.model.request;
 
 import lombok.Data;
-import no.oslomet.gatewayservice.model.User;
+import no.oslomet.userservice.model.database.User;
 
 @Data
 public class UserRequest {

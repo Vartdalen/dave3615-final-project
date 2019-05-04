@@ -1,8 +1,8 @@
 package no.oslomet.userservice.service;
 
-import no.oslomet.userservice.exception.InvalidInputException;
-import no.oslomet.userservice.exception.UserExistsException;
-import no.oslomet.userservice.model.User;
+import no.oslomet.userservice.model.exception.InvalidInputException;
+import no.oslomet.userservice.model.exception.UserExistsException;
+import no.oslomet.userservice.model.database.User;
 import no.oslomet.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
