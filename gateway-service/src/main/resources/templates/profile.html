@@ -57,7 +57,7 @@
                     <div class="col-sm-2 column container-right"></div>
                 </div>
             </div>
-            <nav class="navbar navbar-expand navbar-light navbar-laravel fixed-top navbar-secondary">
+            <nav class="navbar navbar-expand navbar-light navbar-laravel navbar-secondary">
                 <div class="container">
                     <div class="navbar">
                         <a class="navbar-brand bird-cage" href="/">
@@ -92,7 +92,6 @@
                             </li>
                             <li class="nav-item anti-stupid" th:if="${user != null}">
                                 <button th:if="${user2 == null}" class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>
-                                <br/>
                                 <button th:if="${user.role == 'ADMIN' and user2 != null and user2.id != null}" class="twitter custombutton btn btn-secondary anti-stupid admin" type="button" href="#" data-toggle="modal" data-target="#edit-profile-admin-modal">Admin</button>
                             </li>
                         </ul>
@@ -100,6 +99,33 @@
                 </div>
             </nav>
             <div class="container-md">
+                <div class="row">
+                    <div class="col-sm-2 column container-right"></div>
+                    <div class="col-sm-2 column container-profile"></div>
+                    <div class="col-sm-6 column container-activity">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <h3>HOME</h3>
+                                <p>Some content.</p>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <h3>Menu 1</h3>
+                                <p>Some content in menu 1.</p>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h3>Menu 2</h3>
+                                <p>Some content in menu 2.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 column container-right"></div>
+                </div>
             </div>
         </main>
     </body>
