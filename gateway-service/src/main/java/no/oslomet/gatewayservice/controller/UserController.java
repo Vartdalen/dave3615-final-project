@@ -37,6 +37,23 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/{screenName}")
+    public String profile(@PathVariable String screenName, Model model){
+        Optional<User> user = getUserSession(userService, SecurityContextHolder.getContext().getAuthentication());
+        Optional<User> user2 = userService.getUserByScreenName(screenName);
+
+        List<Follow> followList = followService.getAllFollows();
+        List<Tweet> tweetList = tweetService.getAllTweets();
+
+        if(user.isPresent()) {
+            model.addAttribute("user", user.get());
+        }
+        setModelUser2FollowTweet(user, user2, followList, tweetList, model);
+        setModelFollowed(user, user2, followList, model);
+
+        return "profile";
+    }
+
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") User user) {
         //clear session if user changes email
@@ -59,23 +76,12 @@ public class UserController {
         return "redirect:/users/" + userService.getUserById(user.getId()).getScreenName();
     }
 
-    @GetMapping("/{screenName}")
-    public String profile(@PathVariable String screenName, Model model){
-        Optional<User> user = getUserSession(userService, SecurityContextHolder.getContext().getAuthentication());
-        Optional<User> user2 = userService.getUserByScreenName(screenName);
-
-        List<Follow> followList = followService.getAllFollows();
-        List<Tweet> tweetList = tweetService.getAllTweets();
-
-        if(user.isPresent()) {
-            model.addAttribute("user", user.get());
-        }
-        setModelUser2FollowTweet(user, user2, followList, tweetList, model);
-        setModelFollowed(user, user2, followList, model);
-
-        return "profile";
+    @PostMapping("/delete")
+    public String deleteUserById(@RequestParam(value="id") Long idUser) {
+        userService.deleteUserById(idUser);
+        SecurityContextHolder.clearContext();
+        return "index";
     }
-
 
     //private helper methods
 

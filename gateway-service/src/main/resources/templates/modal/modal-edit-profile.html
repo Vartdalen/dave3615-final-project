@@ -47,6 +47,12 @@
                         </div>
                         <button class="twitter modal-form-button btn btn-secondary" type="submit">Update</button>
                     </form>
+                    <form th:action="@{/users/delete}" modelAttribute="user" method="POST">
+                        <div class="form-group" style="display: none">
+                            <input class="form-control" type="number" name="id" placeholder="id" th:value="${user.id}">
+                        </div>
+                        <button class="modal-form-button btn btn-danger" type="submit">Delete Profile</button>
+                    </form>
                 </div>
                 <div class="modal-footer"></div>
             </div>
