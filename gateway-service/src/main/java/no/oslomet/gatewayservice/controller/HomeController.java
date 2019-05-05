@@ -10,11 +10,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
@@ -29,7 +31,6 @@ public class HomeController {
 
         Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
         if(user.isPresent()) {
-            System.out.println(user.toString());
             model.addAttribute("user", user.get());
         }
         return "index";

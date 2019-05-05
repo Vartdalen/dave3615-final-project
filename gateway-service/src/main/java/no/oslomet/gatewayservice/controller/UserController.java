@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -29,32 +30,32 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/user")
+    @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User newUser) {
         newUser.setRole("USER");
         userService.saveUser(newUser);
         return "redirect:/";
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") User user) {
         if(!passwordEncoder.matches(user.getPassword(), userService.getUserById(user.getId()).getPassword())) {
-            return "redirect:/credentialError";
+            return "redirect:/errors/credentialError";
         }
         userService.updateUser(user.getId(), user, false);
-        return "redirect:/profile/" + userService.getUserById(user.getId()).getScreenName();
+        return "redirect:/users/" + userService.getUserById(user.getId()).getScreenName();
     }
 
-    @PostMapping("/user/update/admin")
+    @PostMapping("/update/admin")
     public String updateUserAdmin(@ModelAttribute("user") User user) {
         if(!getUserSession(userService, SecurityContextHolder.getContext().getAuthentication()).get().getRole().equals("ADMIN")) {
-            return "redirect:/forbiddenError";
+            return "redirect:/errors/forbiddenError";
         }
         userService.updateUser(user.getId(), user, true);
-        return "redirect:/profile/" + userService.getUserById(user.getId()).getScreenName();
+        return "redirect:/users/" + userService.getUserById(user.getId()).getScreenName();
     }
 
-    @GetMapping("/profile/{screenName}")
+    @GetMapping("/{screenName}")
     public String profile(@PathVariable String screenName, Model model){
         Optional<User> user = getUserSession(userService, SecurityContextHolder.getContext().getAuthentication());
         Optional<User> user2 = userService.getUserByScreenName(screenName);

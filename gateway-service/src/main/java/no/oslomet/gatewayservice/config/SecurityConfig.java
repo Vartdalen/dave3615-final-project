@@ -17,9 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
@@ -44,13 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //pages
                         "/", "/index",
                         //api
-                        "/user",
+                        "/users/save",
                         //resources
                         "/favicon.ico", "/images/bird.png", "/images/bird_.png").permitAll()
                 //user/admin
                 .antMatchers(
                         //api
-                        "/tweet", "/follow", "/profile/**").hasAnyRole("USER", "ADMIN")
+                        "/tweets/**", "/follows/**", "/users/**").hasAnyRole("USER", "ADMIN")
                 //admin
                 .antMatchers("/userservice/users/**", "/tweetservice/tweets/**", "followservice/follows/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -62,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/loginError")
+                .failureUrl("/errors/credentialError")
                 .permitAll()
 
                 .and()

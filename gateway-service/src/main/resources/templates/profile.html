@@ -50,7 +50,7 @@
                                 <div class="divider-vertical"></div>
                             </li>
                             <li class="nav-item anti-stupid" th:if="${user != null}">
-                                <form th:action="@{/follow}" method="POST" th:if="${followed == null and user2 != null}">
+                                <form th:action="@{/follows/save}" method="POST" th:if="${followed == null and user2 != null}">
                                     <div class="form-group" style="display: none">
                                         <input type="number" th:name="follower" th:value="${user.id}"/>
                                     </div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Follow</button>
                                 </form>
-                                <form th:action="@{/unfollow}" method="POST" th:if="${followed != null}">
+                                <form th:action="@{/follows/delete}" method="POST" th:if="${followed != null}">
                                     <div class="form-group" style="display: none">
                                         <input type="number" th:name="follower" th:value="${user.id}"/>
                                     </div>
@@ -76,7 +76,22 @@
                 </div>
             </nav>
             <div class="container-lg">
+                <div>
+                    <form method="POST" enctype="multipart/form-data" action="/uploads/save">
+                        <table>
+                            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                        </table>
+                    </form>
+                </div>
 
+                <div>
+                    <ul>
+                        <li th:each="file : ${files}">
+                            <a th:href="${file}" th:text="${file}" />
+                        </li>
+                    </ul>
+                </div>
             </div>
         </main>
     </body>
