@@ -14,7 +14,7 @@
         <section class="content-header" th:replace="modal/modal-edit-profile-admin.html::modal-edit-profile-admin"></section>
 
         <main>
-            <div class="container-lg twitter-dark" style="height: 20em"></div>
+            <div class="container-lg twitter-dark" style="height: 25em"></div>
             <nav class="navbar navbar-expand navbar-light navbar-laravel fixed-top navbar-secondary">
                 <div class="container">
                     <div class="navbar">
@@ -76,7 +76,22 @@
                     </div>
                 </div>
             </nav>
-            <div class="container-lg">
+            <div class="container-md">
+                <div class="row">
+                    <div class="col-sm-2 column container-left"></div>
+                    <div class="col-sm-3 column container-profile">
+                        <div class="container-sm column">
+                            <div th:if="${user != null and user2 == null}" class="container">
+                                <a class="navbar-brand" th:value="${user.screenName}"></a>
+                            </div>
+                            <div th:if="${user2 != null}" class="container">
+                                <a class="navbar-brand" th:value="${user2.screenName}"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 column container-activity"></div>
+                    <div class="col-sm-2 column container-right"></div>
+                </div>
             </div>
         </main>
     </body>

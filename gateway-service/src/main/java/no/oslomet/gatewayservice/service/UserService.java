@@ -80,13 +80,11 @@ public class UserService {
                 tweetService.deleteTweetById(tweet.getId());
             }
         }
-
         for (Follow follow: followList) {
             if (follow.getIdFollower() == idUser || follow.getIdFollowed() == idUser) {
                 followService.deleteFollowById(follow.getId());
             }
         }
-
         restTemplate.delete(BASE_URL+"/"+idUser);
     }
 }
