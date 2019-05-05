@@ -6,6 +6,7 @@ import no.oslomet.gatewayservice.model.User;
 import no.oslomet.gatewayservice.service.FollowService;
 import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
+import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,8 +36,11 @@ public class UserController {
 
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute("user") User user) {
-        System.out.println(user.toString());
-        userService.updateUser(user.getId(), user);
+        try {
+            userService.updateUser(user.getId(), user);
+        } catch (InvalidCredentialsException e) {
+            return "redirect:/loginError";
+        }
         return "redirect:/profile/" + user.getScreenName();
     }
 

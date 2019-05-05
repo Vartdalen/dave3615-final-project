@@ -19,9 +19,9 @@ import java.util.regex.Pattern;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    Environment env;
+    private Environment env;
 
     private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     private static final String SCREEN_NAME_REGEX = "^[^\\W_]+$";
@@ -61,8 +61,6 @@ public class UserController {
     @PostMapping("/users")
     @ResponseBody
     public ResponseEntity<User> saveUser(@RequestBody User newUser) {
-        System.out.println(newUser.toString());
-
         Matcher m = Pattern.compile(EMAIL_REGEX).matcher(newUser.getEmail());
         Matcher m2 = Pattern.compile(SCREEN_NAME_REGEX).matcher(newUser.getScreenName());
         if(!m.matches() || !m2.matches()) {
@@ -72,13 +70,11 @@ public class UserController {
         if((userService.getUserByEmail(newUser.getEmail()).isPresent() || userService.getUserByScreenName(newUser.getScreenName()).isPresent())) {
             throw new UserExistsException();
         }
-
         return new ResponseEntity<>(userService.saveUser(newUser), HttpStatus.OK);
     }
 
     @PutMapping("/users/{newId}")
     public User updateUser(@PathVariable long newId, @RequestBody User user) {
-        System.out.println(newId);
         user.setId(newId);
         return userService.saveUser(user);
     }

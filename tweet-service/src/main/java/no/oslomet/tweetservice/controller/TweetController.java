@@ -14,9 +14,9 @@ import java.util.List;
 public class TweetController {
 
     @Autowired
-    TweetService tweetService;
+    private TweetService tweetService;
     @Autowired
-    Environment env;
+    private Environment env;
 
     @RequestMapping
     public String home(){

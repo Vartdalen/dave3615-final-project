@@ -1,6 +1,7 @@
 package no.oslomet.gatewayservice.service;
 
 import no.oslomet.gatewayservice.model.User;
+import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,12 +53,16 @@ public class UserService {
 
     public User saveUser(User newUser) {
         ResponseEntity<User> response;
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        String password = passwordEncoder.encode(newUser.getPassword());
+        newUser.setPassword(password);
         response = restTemplate.postForEntity(BASE_URL, newUser, User.class);
         return response.getBody();
     }
 
-    public void updateUser(long id, User updatedUser) {
+    public void updateUser(long id, User updatedUser) throws InvalidCredentialsException {
+        if(!passwordEncoder.matches(updatedUser.getPassword(), getUserById(updatedUser.getId()).getPassword())) {
+            throw new InvalidCredentialsException();
+        }
         updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         restTemplate.put(BASE_URL+"/"+id, updatedUser);
     }

@@ -15,9 +15,9 @@ import java.util.List;
 @RestController
 public class FollowController {
     @Autowired
-    FollowService followService;
+    private FollowService followService;
     @Autowired
-    Environment env;
+    private Environment env;
 
     @RequestMapping
     public String home(){
