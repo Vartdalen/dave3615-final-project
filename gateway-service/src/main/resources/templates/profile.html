@@ -11,6 +11,7 @@
         <section class="content-header" th:replace="header/navbar.html::navbar"></section>
         <section class="content-header" th:replace="../static/css/css-profile.html::css-profile"></section>
         <section class="content-header" th:replace="modal/modal-edit-profile.html::modal-edit-profile"></section>
+        <section class="content-header" th:replace="modal/modal-edit-profile-admin.html::modal-edit-profile-admin"></section>
 
         <main>
             <div class="container-lg twitter-dark" style="height: 20em"></div>
@@ -49,7 +50,7 @@
                                 <div class="divider-vertical"></div>
                             </li>
                             <li class="nav-item anti-stupid" th:if="${user != null}">
-                                <form th:action="@{/follow}" method="POST" th:if="${followed == null && user2 != null}">
+                                <form th:action="@{/follow}" method="POST" th:if="${followed == null and user2 != null}">
                                     <div class="form-group" style="display: none">
                                         <input type="number" th:name="follower" th:value="${user.id}"/>
                                     </div>
@@ -67,7 +68,8 @@
                                     </div>
                                     <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Unfollow</button>
                                 </form>
-                                <button class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal" th:if="${user2 == null || user.role == 'ADMIN'}">Edit Profile</button>
+                                <button th:if="${user2 == null}" class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>
+                                <button th:if="${user.role == 'ADMIN' and user2 != null and user2.id != null}" class="twitter custombutton btn btn-secondary anti-stupid admin" type="button" href="#" data-toggle="modal" data-target="#edit-profile-admin-modal">Admin</button>
                             </li>
                         </ul>
                     </div>

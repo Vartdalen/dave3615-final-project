@@ -44,7 +44,7 @@ public class MyErrorController implements ErrorController {
     @GetMapping("/error")
     public String handleClientServerError(Model model, HttpServletRequest request) {
         Error error = new Error();
-        appendClientErrorInformation(error, request, "Client server error");
+        appendClientErrorInformation(error, request, "Internal server error: Unknown error", "500");
         model.addAttribute("error", error);
 
         Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
@@ -55,10 +55,18 @@ public class MyErrorController implements ErrorController {
         return "index";
     }
 
-    @GetMapping("/loginError")
-    public String handleClientLoginError(Model model, HttpServletRequest request) {
+    @GetMapping("/credentialError")
+    public String handleClientCredentialError(Model model, HttpServletRequest request) {
         Error error = new Error();
-        appendClientErrorInformation(error, request, "Invalid username or password");
+        appendClientErrorInformation(error, request, "Unauthorized: Invalid username or password", "401");
+        model.addAttribute("error", error);
+        return "index";
+    }
+
+    @GetMapping("/forbiddenError")
+    public String handleClientForbiddenError(Model model, HttpServletRequest request) {
+        Error error = new Error();
+        appendClientErrorInformation(error, request, "Forbidden: Forbidden action attempted", "403");
         model.addAttribute("error", error);
         return "index";
     }
@@ -76,14 +84,14 @@ public class MyErrorController implements ErrorController {
         error.setMessage(reasonPhrase);
     }
 
-    private void appendClientErrorInformation(Error error, HttpServletRequest request, String message) {
+    private void appendClientErrorInformation(Error error, HttpServletRequest request, String message, String errorCode) {
         Object statusCode = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         Object statusMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
 
         if(statusCode != null) {
             error.setCode(statusCode.toString());
         } else {
-            error.setCode("404");
+            error.setCode(errorCode);
         }
 
         if(statusMessage != null) {

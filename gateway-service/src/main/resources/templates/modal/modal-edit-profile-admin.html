@@ -1,0 +1,51 @@
+<section class="content-header" th:fragment="modal-edit-profile-admin" xmlns:th="http://www.w3.org/1999/xhtml">
+    <section class="content-header" th:replace="../static/css/css-modal.html::css-modal"></section>
+    <section class="content-header" th:replace="../static/css/css-modal-form.html::css-modal-form"></section>
+
+    <div th:if="${user2 != null and user2.id != null}" class="modal fade" id="edit-profile-admin-modal" role="dialog" aria-labelledby="edit-profile-modal-admin-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-container modal-form">
+                <div class="modal-header">
+                    <h3>Edit Profile <label style="color: red">(admin)</label></h3>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/update/admin}" modelAttribute="user2" method="POST">
+                        <div class="form-group" style="display: none">
+                            <input class="form-control" type="number" name="id" placeholder="id" th:value="${user2.id}">
+                        </div>
+                        <label for="email">Email</label>
+                        <div class="form-group">
+                            <input id="email" class="form-control" type="email" name="email" placeholder="Email" maxlength="40" th:value="${user2.email}">
+                        </div>
+                        <label for="newpassword">New Password</label>
+                        <div class="form-group">
+                            <input id="newpassword" class="form-control" type="password" name="newPassword" placeholder="Password">
+                        </div>
+                        <label for="role">Role</label>
+                        <div class="form-group">
+                            <input id="role" class="form-control" type="text" name="role" placeholder="Role" th:value="${user2.role}">
+                        </div>
+                        <label for="screenName">Screen Name</label>
+                        <div class="form-group">
+                            <input id="screenName" class="form-control" type="text" name="screenName" placeholder="Screen Name" pattern="^[^\W_]+$" oninvalid="this.setCustomValidity('No symbols or spaces allowed.')" oninput="setCustomValidity('')" maxlength="15" th:value="${user2.screenName}">
+                        </div>
+                        <label for="firstName">First Name</label>
+                        <div class="form-group">
+                            <input id="firstName" class="form-control" type="text" name="firstName" placeholder="First Name" maxlength="15" th:value="${user2.firstName}">
+                        </div>
+                        <label for="lastName">Last Name</label>
+                        <div class="form-group">
+                            <input id="lastName" class="form-control" type="text" name="lastName" placeholder="Last Name" maxlength="30" th:value="${user2.lastName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <input id="bio" class="form-control" type="text" name="bio" placeholder="Bio" th:value="${user2.bio}">
+                        </div>
+                        <button class="twitter modal-form-button btn btn-secondary" type="submit">Update</button>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+</section>

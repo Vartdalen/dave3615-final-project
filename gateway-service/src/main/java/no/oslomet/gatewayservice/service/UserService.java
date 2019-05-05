@@ -4,11 +4,14 @@ import no.oslomet.gatewayservice.model.User;
 import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -59,12 +62,11 @@ public class UserService {
         return response.getBody();
     }
 
-    public void updateUser(long id, User updatedUser) throws InvalidCredentialsException {
-        if(!passwordEncoder.matches(updatedUser.getPassword(), getUserById(updatedUser.getId()).getPassword())) {
-            throw new InvalidCredentialsException();
-        }
-        if(updatedUser.getNewPassword().length() > 0) {
+    public void updateUser(long id, User updatedUser, boolean admin) {
+        if(updatedUser.getNewPassword() != null && updatedUser.getNewPassword().length() > 0) {
             updatedUser.setPassword(passwordEncoder.encode(updatedUser.getNewPassword()));
+        } else if (admin && updatedUser.getNewPassword() == null) {
+            updatedUser.setPassword(getUserById(updatedUser.getId()).getPassword());
         } else {
             updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
