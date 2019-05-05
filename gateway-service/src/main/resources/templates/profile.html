@@ -69,6 +69,7 @@
                                     <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit">Unfollow</button>
                                 </form>
                                 <button th:if="${user2 == null}" class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>
+                                <br/>
                                 <button th:if="${user.role == 'ADMIN' and user2 != null and user2.id != null}" class="twitter custombutton btn btn-secondary anti-stupid admin" type="button" href="#" data-toggle="modal" data-target="#edit-profile-admin-modal">Admin</button>
                             </li>
                         </ul>

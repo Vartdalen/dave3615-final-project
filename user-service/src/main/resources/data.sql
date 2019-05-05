@@ -1,4 +1,23 @@
 INSERT INTO user (bio, email, first_name, last_name, password, role, screen_name)
 VALUES
-('admin bio', 'admin@live.no', 'admin', 'admin', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'ADMIN', 'admin'),
-('Twitter', 'user@live.no', 'user', 'user', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user');
+('Twitter1', 'user1@live.no', 'user1', 'user1', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user1'),
+('Twitter2', 'user2@live.no', 'user2', 'user2', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user2'),
+('Twitter3', 'user3@live.no', 'user3', 'user3', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user3'),
+('Twitter4', 'user4@live.no', 'user4', 'user4', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user4'),
+('Twitter5', 'user5@live.no', 'user5', 'user5', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user5'),
+('Twitter6', 'user6@live.no', 'user6', 'user6', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user6'),
+('Twitter7', 'user7@live.no', 'user7', 'user7', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user7'),
+('Twitter8', 'user8@live.no', 'user8', 'user8', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user8'),
+('Twitter9', 'user9@live.no', 'user9', 'user9', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user9'),
+('Twitter10', 'user10@live.no', 'user10', 'user10', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user10'),
+('Twitter11', 'user11@live.no', 'user11', 'user11', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user11'),
+('Twitter12', 'user12@live.no', 'user12', 'user12', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user12'),
+('Twitter13', 'user13@live.no', 'user13', 'user13', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user13'),
+('Twitter14', 'user14@live.no', 'user14', 'user14', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user14'),
+('Twitter15', 'user15@live.no', 'user15', 'user15', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user15'),
+('Twitter16', 'user16@live.no', 'user16', 'user16', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user16'),
+('Twitter17', 'user17@live.no', 'user17', 'user17', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user17'),
+('Twitter18', 'user18@live.no', 'user18', 'user18', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user18'),
+('Twitter19', 'user19@live.no', 'user19', 'user19', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user19'),
+('Twitter20', 'user20@live.no', 'user20', 'user20', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user20'),
+('admin bio', 'admin@live.no', 'admin', 'admin', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'ADMIN', 'admin');

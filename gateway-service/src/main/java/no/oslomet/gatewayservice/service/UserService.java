@@ -1,5 +1,7 @@
 package no.oslomet.gatewayservice.service;
 
+import no.oslomet.gatewayservice.model.Follow;
+import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,10 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private TweetService tweetService;
+    @Autowired
+    private FollowService followService;
 
     String BASE_URL = "http://localhost:8082/users";
     private RestTemplate restTemplate = new RestTemplate();
@@ -56,16 +62,31 @@ public class UserService {
         return response.getBody();
     }
 
-    public void updateUser(long id, User updatedUser) {
+    public void updateUser(long idUser, User updatedUser) {
         if(updatedUser.getNewPassword() != null && updatedUser.getNewPassword().length() > 0) {
             updatedUser.setPassword(passwordEncoder.encode(updatedUser.getNewPassword()));
         } else {
             updatedUser.setPassword(getUserById(updatedUser.getId()).getPassword());
         }
-        restTemplate.put(BASE_URL+"/"+id, updatedUser);
+        restTemplate.put(BASE_URL+"/"+idUser, updatedUser);
     }
 
-    public void deleteUserById(long id) {
-        restTemplate.delete(BASE_URL+"/"+id);
+    public void deleteUserById(long idUser) {
+        List<Tweet> tweetList = tweetService.getAllTweets();
+        List<Follow> followList = followService.getAllFollows();
+
+        for(Tweet tweet: tweetList) {
+            if (tweet.getIdUser() == idUser) {
+                tweetService.deleteTweetById(tweet.getId());
+            }
+        }
+
+        for (Follow follow: followList) {
+            if (follow.getIdFollower() == idUser || follow.getIdFollowed() == idUser) {
+                followService.deleteFollowById(follow.getId());
+            }
+        }
+
+        restTemplate.delete(BASE_URL+"/"+idUser);
     }
 }

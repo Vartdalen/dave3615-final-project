@@ -80,7 +80,16 @@ public class UserController {
     public String deleteUserById(@RequestParam(value="id") Long idUser) {
         userService.deleteUserById(idUser);
         SecurityContextHolder.clearContext();
-        return "index";
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete/admin")
+    public String deleteUserByIdAdmin(@RequestParam(value="id") Long idUser) {
+        if(!getUserSession(userService, SecurityContextHolder.getContext().getAuthentication()).get().getRole().equals("ADMIN")) {
+            return "redirect:/errors/forbiddenError";
+        }
+        userService.deleteUserById(idUser);
+        return "redirect:/";
     }
 
     //private helper methods

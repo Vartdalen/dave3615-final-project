@@ -6,7 +6,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-container modal-form">
                 <div class="modal-header">
-                    <h3>Edit Profile</h3>
+                    <h3>Update Profile</h3>
                 </div>
                 <div class="modal-body">
                     <form th:action="@{/users/update}" modelAttribute="user" method="POST">
@@ -45,8 +45,9 @@
                             <label for="bio">Bio</label>
                             <input id="bio" class="form-control" type="text" name="bio" placeholder="Bio" th:value="${user.bio}">
                         </div>
-                        <button class="twitter modal-form-button btn btn-secondary" type="submit">Update</button>
+                        <button class="twitter modal-form-button btn btn-secondary" type="submit">Update Profile</button>
                     </form>
+                    <br/>
                     <form th:action="@{/users/delete}" modelAttribute="user" method="POST">
                         <div class="form-group" style="display: none">
                             <input class="form-control" type="number" name="id" placeholder="id" th:value="${user.id}">
