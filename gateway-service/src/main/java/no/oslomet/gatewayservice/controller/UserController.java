@@ -42,7 +42,7 @@ public class UserController {
         if(!passwordEncoder.matches(user.getPassword(), userService.getUserById(user.getId()).getPassword())) {
             return "redirect:/errors/credentialError";
         }
-        userService.updateUser(user.getId(), user, false);
+        userService.updateUser(user.getId(), user);
         return "redirect:/users/" + userService.getUserById(user.getId()).getScreenName();
     }
 
@@ -51,7 +51,7 @@ public class UserController {
         if(!getUserSession(userService, SecurityContextHolder.getContext().getAuthentication()).get().getRole().equals("ADMIN")) {
             return "redirect:/errors/forbiddenError";
         }
-        userService.updateUser(user.getId(), user, true);
+        userService.updateUser(user.getId(), user);
         return "redirect:/users/" + userService.getUserById(user.getId()).getScreenName();
     }
 
