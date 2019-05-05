@@ -4,6 +4,7 @@ import no.oslomet.gatewayservice.model.Follow;
 import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
 import no.oslomet.gatewayservice.service.FollowService;
+import no.oslomet.gatewayservice.service.LoginService;
 import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class UserController {
     @Autowired
     private TweetService tweetService;
     @Autowired
+    private LoginService loginService;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/save")
@@ -39,6 +42,10 @@ public class UserController {
 
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") User user) {
+        //clear session if user changes email
+        if(!user.getEmail().equals(userService.getUserById(user.getId()).getEmail())) {
+            SecurityContextHolder.clearContext();
+        }
         if(!passwordEncoder.matches(user.getPassword(), userService.getUserById(user.getId()).getPassword())) {
             return "redirect:/errors/credentialError";
         }
