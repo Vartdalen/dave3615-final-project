@@ -4,7 +4,6 @@ import no.oslomet.gatewayservice.model.Follow;
 import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
 import no.oslomet.gatewayservice.service.FollowService;
-import no.oslomet.gatewayservice.service.LoginService;
 import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,6 @@ public class UserController {
     private FollowService followService;
     @Autowired
     private TweetService tweetService;
-    @Autowired
-    private LoginService loginService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 

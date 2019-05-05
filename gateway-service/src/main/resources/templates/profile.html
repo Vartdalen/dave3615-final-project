@@ -76,22 +76,6 @@
                 </div>
             </nav>
             <div class="container-lg">
-                <div>
-                    <form method="POST" enctype="multipart/form-data" action="/uploads/save">
-                        <table>
-                            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-                            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-                        </table>
-                    </form>
-                </div>
-
-                <div>
-                    <ul>
-                        <li th:each="file : ${files}">
-                            <a th:href="${file}" th:text="${file}" />
-                        </li>
-                    </ul>
-                </div>
             </div>
         </main>
     </body>

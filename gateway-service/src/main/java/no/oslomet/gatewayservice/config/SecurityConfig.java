@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //api
                         "/tweets/**", "/follows/**", "/users/**").hasAnyRole("USER", "ADMIN")
                 //admin
-                .antMatchers("/userservice/users/**", "/tweetservice/tweets/**", "followservice/follows/**").hasRole("ADMIN")
+                .antMatchers("/userservice/users/**", "/tweetservice/tweets/**", "/followservice/follows/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
                 .and()
