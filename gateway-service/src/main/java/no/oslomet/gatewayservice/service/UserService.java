@@ -63,7 +63,11 @@ public class UserService {
         if(!passwordEncoder.matches(updatedUser.getPassword(), getUserById(updatedUser.getId()).getPassword())) {
             throw new InvalidCredentialsException();
         }
-        updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        if(updatedUser.getNewPassword().length() > 0) {
+            updatedUser.setPassword(passwordEncoder.encode(updatedUser.getNewPassword()));
+        } else {
+            updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        }
         restTemplate.put(BASE_URL+"/"+id, updatedUser);
     }
 

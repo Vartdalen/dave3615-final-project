@@ -13,13 +13,17 @@
                         <div class="form-group" style="display: none">
                             <input class="form-control" type="number" name="id" placeholder="id" th:value="${user.id}">
                         </div>
-                        <label for="email">Email</label>
+                        <label for="email">Email <label style="color: red">(change will invalidate session)</label></label>
                         <div class="form-group">
                             <input id="email" class="form-control" type="email" name="email" placeholder="Email" maxlength="40" th:value="${user.email}">
                         </div>
-                        <label for="password">Password</label>
+                        <label for="password">Password <label style="color: red">(must match old password)</label></label>
                         <div class="form-group">
                             <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <label for="newPassword">New Password</label>
+                        <div class="form-group">
+                            <input id="newPassword" class="form-control" type="password" name="newPassword" placeholder="Password">
                         </div>
                         <label for="role">Role</label>
                         <div class="form-group">

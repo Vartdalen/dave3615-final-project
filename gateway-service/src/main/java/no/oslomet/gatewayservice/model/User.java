@@ -7,6 +7,7 @@ public class User {
     private long id;
     private String email;
     private String password;
+    private String newPassword;
     private String role;
     private String screenName;
     private String firstName;
@@ -15,10 +16,11 @@ public class User {
 
     public User() {}
 
-    public User(long id, String email, String password, String role, String screenName, String firstName, String lastName, String bio) {
+    public User(long id, String email, String password, String newPassword, String role, String screenName, String firstName, String lastName, String bio) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.newPassword = newPassword;
         this.role = role;
         this.screenName = screenName;
         this.firstName = firstName;
@@ -29,6 +31,7 @@ public class User {
     public long getId() { return id; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
+    public String getNewPassword() { return newPassword; }
     public String getRole() { return role; }
     public String getScreenName() { return screenName; }
     public String getFirstName() { return firstName; }
@@ -38,6 +41,7 @@ public class User {
     public void setId(long id) { this.id = id; }
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
+    public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
     public void setRole(String role) { this.role = role; }
     public void setScreenName(String screenName) { this.screenName = screenName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
