@@ -152,23 +152,21 @@
                             </div>
 
                             <div class='tab-pane container fade in' id='s2'>
-                                <!--<th:block th:each="tweet : ${followingTweetList}">-->
-                                    <!--<th:block th:each="userFollowed : ${followingUserList}">-->
-                                        <!--<table th:if="${user != null and user2 == null and userFollowed.id == tweet.id}" class="table tweet-table shadow pb-3 bg-white rounded">-->
-                                            <!--<thead>-->
-                                            <!--<tr>-->
-                                                <!--<th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name" th:text="${userFollowed.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${userFollowed.firstName + ' ' + userFollowed.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>-->
-                                            <!--</tr>-->
-                                            <!--</thead>-->
+                                <th:block th:each="tweet : ${followTweetList}">
+                                    <table th:if="${user != null and user2 != null}" class="table tweet-table shadow pb-3 bg-white rounded">
+                                        <thead>
+                                        <tr>
+                                            <th class="tweet-header" scope="col"><a class="tweet-screen-name" th:text="${tweet.screenNameUser}"></a>&nbsp<p class="title tweet-name" th:text="${tweet.firstNameUser + ' ' + tweet.lastNameUser}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                        </tr>
+                                        </thead>
 
-                                            <!--<tbody class="tweet-text">-->
-                                            <!--<tr>-->
-                                                <!--<td th:text="${tweet.text}"></td>-->
-                                            <!--</tr>-->
-                                            <!--</tbody>-->
-                                        <!--</table>-->
-                                    <!--</th:block>-->
-                                <!--</th:block>-->
+                                        <tbody class="tweet-text">
+                                        <tr>
+                                            <td th:text="${tweet.text}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </th:block>
                             </div>
                         </div>
                     </div>

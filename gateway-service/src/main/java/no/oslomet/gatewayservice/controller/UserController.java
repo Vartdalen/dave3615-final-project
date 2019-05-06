@@ -130,9 +130,11 @@ public class UserController {
         int tweets = 0;
         if(user.isPresent() && user2.isPresent() && user.get().getId() != user2.get().getId()) {
             //on user2 page
+            List<User> followedUserList = getFollowedUserList(user2.get(), followList);
             followers = getFollowers(user2.get(), followList);
             following = getFollowing(user2.get(), followList);
             tweets = getTweets(user2.get(), tweetList);
+            model.addAttribute("followTweetList", getFollowedTweetsList(tweetList, followedUserList));
             model.addAttribute("user2", user2.get());
         } else if (user.isPresent()) {
             followers = getFollowers(user.get(), followList);
@@ -172,6 +174,28 @@ public class UserController {
                     }
                 }
                 return tweets;
+            }
+
+            private List<User> getFollowedUserList(User user, List<Follow> followList) {
+                List<User> followUserList = new ArrayList<>();
+                for(Follow follow: followList) {
+                    if(follow.getIdFollower() == user.getId()) {
+                        followUserList.add(userService.getUserById(follow.getIdFollowed()));
+                    }
+                }
+                return followUserList;
+            }
+
+            private List<ViewTweet> getFollowedTweetsList(List<Tweet> tweetList, List<User> followedUserList) {
+                List<ViewTweet> followTweetList = new ArrayList<>();
+                for(Tweet tweet: tweetList) {
+                    for(User followUser: followedUserList) {
+                        if(tweet.getIdUser() == followUser.getId()) {
+                            followTweetList.add(new ViewTweet(tweet.getId(), tweet.getIdParent(), followUser.getId(), followUser.getScreenName(), followUser.getFirstName(), followUser.getLastName(), tweet.getUrlImage(), tweet.getTimestamp(), tweet.getText()));
+                        }
+                    }
+                }
+                return followTweetList;
             }
 
 }
