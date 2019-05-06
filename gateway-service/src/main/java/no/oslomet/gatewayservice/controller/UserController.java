@@ -3,6 +3,7 @@ package no.oslomet.gatewayservice.controller;
 import no.oslomet.gatewayservice.model.Follow;
 import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
+import no.oslomet.gatewayservice.model.view.ViewTweet;
 import no.oslomet.gatewayservice.service.FollowService;
 import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +46,26 @@ public class UserController {
 
         List<Follow> followList = followService.getAllFollows();
         List<Tweet> tweetList = tweetService.getAllTweets();
+        List<User> userList = userService.getAllUsers();
+        List<ViewTweet> viewTweetList = new ArrayList<>();
+
+        for(Tweet tweetInList: tweetList) {
+            for (User userInList: userList) {
+                if(tweetInList.getIdUser() == userInList.getId()) {
+                    viewTweetList.add(new ViewTweet(tweetInList.getId(), tweetInList.getIdParent(), userInList.getId(), userInList.getScreenName(), userInList.getFirstName(), userInList.getLastName(), tweetInList.getUrlImage(), tweetInList.getTimestamp(), tweetInList.getText()));
+                }
+            }
+        }
+        System.out.println(viewTweetList.toString());
 
         if(user.isPresent()) {
             model.addAttribute("user", user.get());
         }
         setModelUser2FollowTweet(user, user2, followList, tweetList, model);
         setModelFollowed(user, user2, followList, model);
-        model.addAttribute("tweetList", tweetList);
+
+        model.addAttribute("viewTweetList", viewTweetList);
+        model.addAttribute("userList", userList);
 
         return "profile";
     }

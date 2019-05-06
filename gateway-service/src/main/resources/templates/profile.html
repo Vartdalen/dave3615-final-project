@@ -102,7 +102,8 @@
                     <div class="col-sm-8 column container-activity">
                         <ul class="nav nav-tabs">
                             <li class='nav-item'>
-                                <a class='nav-link active' data-toggle='tab' href='#s1'>My Tweets</a>
+                                <a th:if="${user != null and user2 == null}" class='nav-link active' data-toggle='tab' href='#s1'>My Tweets</a>
+                                <a th:if="${user2 != null}" class='nav-link active' data-toggle='tab' href='#s1'>Tweets</a>
                             </li>
                             <li class='nav-item'>
                                 <a class='nav-link ' data-toggle='tab' href='#s2'>Following</a>
@@ -112,31 +113,43 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class='tab-pane container fade in show active' id='s1'>
-                                <div th:if="${tweetList != null && !tweetList.empty}" class="container-tweets">
-                                    <th:block th:each="tweet : ${tweetList}">
-                                    <table class="table shadow pb-3 bg-white rounded">
+                                <div th:if="${viewTweetList != null && !viewTweetList.empty}" class="container-tweets">
+                                    <th:block th:each="tweet : ${viewTweetList}">
+                                        <table th:if="${user != null and user2 == null and tweet.idUser == user.id}" class="table tweet-table shadow pb-3 bg-white rounded">
                                             <thead>
                                             <tr>
                                                 <th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name" th:text="${user.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${user.firstName + ' ' + user.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody class="tweet-text">
+                                                <tr>
+                                                    <td th:text="${tweet.text}"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table th:if="${user2 != null and tweet.idUser == user2.id}" class="table tweet-table shadow pb-3 bg-white rounded">
+                                            <thead>
+                                            <tr>
                                                 <th class="tweet-header" th:if="${user2 != null}" scope="col"><a class="tweet-screen-name link" th:text="${user2.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${'   ' + user2.firstName + ' ' + user2.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
                                             </tr>
                                             </thead>
 
-                                            <tbody class="tweet-text" id="table">
-                                                <tr>
-                                                    <td th:text="${tweet.text}"></td>
-                                                    <!--<td th:text="${tweet.id}"></td>-->
-                                                    <!--<td th:text="${tweet.idParent}"></td>-->
-                                                    <!--<td th:text="${tweet.idUser}"></td>-->
-                                                    <!--<td th:text="${tweet.urlImage}"></td>-->
-                                                    <!--<td th:text="${tweet.timestamp}"></td>-->
-                                                    <!--<td th:text="${tweet.text}"></td>-->
-                                                    <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
-                                                </tr>
+                                            <tbody class="tweet-text">
+                                            <tr>
+                                                <td th:text="${tweet.text}"></td>
+                                                <!--<td th:text="${tweet.id}"></td>-->
+                                                <!--<td th:text="${tweet.idParent}"></td>-->
+                                                <!--<td th:text="${tweet.idUser}"></td>-->
+                                                <!--<td th:text="${tweet.urlImage}"></td>-->
+                                                <!--<td th:text="${tweet.timestamp}"></td>-->
+                                                <!--<td th:text="${tweet.text}"></td>-->
+                                                <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
+                                                <td><button class="twitter custombutton btn btn-secondary" type="button" th:value="${user2.id + ',' + tweet.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}" data-toggle="modal" data-target="#tweet-modal">Reply</button></td>
+                                            </tr>
                                             </tbody>
-                                            <br/>
-
-                                    </table>
+                                        </table>
                                     </th:block>
                                 </div>
                             </div>
