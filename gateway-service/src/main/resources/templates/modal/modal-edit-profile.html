@@ -13,37 +13,37 @@
                         <div class="form-group" style="display: none">
                             <input class="form-control" type="number" name="id" placeholder="id" th:value="${user.id}">
                         </div>
-                        <label for="email">Email <label style="color: red">(change will invalidate session)</label></label>
+                        <label for="email2">Email <label style="color: red">(change will invalidate session)</label></label>
                         <div class="form-group">
-                            <input id="email" class="form-control" type="email" name="email" placeholder="Email" maxlength="40" th:value="${user.email}">
+                            <input id="email2" class="form-control" type="email" name="email" placeholder="Email" maxlength="40" th:value="${user.email}">
                         </div>
-                        <label for="password">Password <label style="color: red">(incorrect will invalidate session)</label></label>
+                        <label for="password2">Password <label style="color: red">(incorrect will invalidate session)</label></label>
                         <div class="form-group">
-                            <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
+                            <input id="password2" class="form-control" type="password" name="password" placeholder="Password" required>
                         </div>
-                        <label for="newPassword">New Password</label>
+                        <label for="newPassword2">New Password</label>
                         <div class="form-group">
-                            <input id="newPassword" class="form-control" type="password" name="newPassword" placeholder="Password">
+                            <input id="newPassword2" class="form-control" type="password" name="newPassword" placeholder="Password">
                         </div>
                         <label for="role">Role</label>
                         <div class="form-group" style="display: none">
                             <input id="role" class="form-control" type="text" name="role" placeholder="Role" th:value="${user.role}">
                         </div>
-                        <label for="screenName">Screen Name</label>
+                        <label for="screenName2">Screen Name</label>
                         <div class="form-group">
-                            <input id="screenName" class="form-control" type="text" name="screenName" placeholder="Screen Name" pattern="^[^\W_]+$" oninvalid="this.setCustomValidity('No symbols or spaces allowed.')" oninput="setCustomValidity('')" maxlength="15" th:value="${user.screenName}">
+                            <input id="screenName2" class="form-control" type="text" name="screenName" placeholder="Screen Name" pattern="^[^\W_]+$" oninvalid="this.setCustomValidity('No symbols or spaces allowed.')" oninput="setCustomValidity('')" maxlength="15" th:value="${user.screenName}">
                         </div>
-                        <label for="firstName">First Name</label>
+                        <label for="firstName2">First Name</label>
                         <div class="form-group">
-                            <input id="firstName" class="form-control" type="text" name="firstName" placeholder="First Name" maxlength="15" th:value="${user.firstName}">
+                            <input id="firstName2" class="form-control" type="text" name="firstName" placeholder="First Name" maxlength="15" th:value="${user.firstName}">
                         </div>
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName2">Last Name</label>
                         <div class="form-group">
-                            <input id="lastName" class="form-control" type="text" name="lastName" placeholder="Last Name" maxlength="30" th:value="${user.lastName}">
+                            <input id="lastName2" class="form-control" type="text" name="lastName" placeholder="Last Name" maxlength="30" th:value="${user.lastName}">
                         </div>
                         <div class="form-group">
-                            <label for="bio">Bio</label>
-                            <input id="bio" class="form-control" type="text" name="bio" placeholder="Bio" th:value="${user.bio}">
+                            <label for="bio2">Bio</label>
+                            <input id="bio2" class="form-control" type="text" name="bio" placeholder="Bio" th:value="${user.bio}">
                         </div>
                         <button class="twitter modal-form-button btn btn-secondary" type="submit">Update Profile</button>
                     </form>

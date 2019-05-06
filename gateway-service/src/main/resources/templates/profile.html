@@ -12,6 +12,8 @@
         <section class="content-header" th:replace="../static/css/css-profile.html::css-profile"></section>
         <section class="content-header" th:replace="modal/modal-edit-profile.html::modal-edit-profile"></section>
         <section class="content-header" th:replace="modal/modal-edit-profile-admin.html::modal-edit-profile-admin"></section>
+        <section class="content-header" th:replace="../static/scripts/scripts-generate-reply-modal::scripts-generate-reply-modal"></section>
+
 
         <main>
             <div class="container-lg twitter-dark">
@@ -43,7 +45,7 @@
                                         </div>
                                         <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit" style="width: 80%">Follow</button>
                                     </form>
-                                    <form th:action="@{/follows/delete}" method="POST" th:if="${followed != null}">
+                                    <form th:action="@{/follows/delete}" method="POST" th:if="${followed != null and user2 != null}">
                                         <div class="form-group" style="display: none">
                                             <input type="number" th:name="follower" th:value="${user.id}"/>
                                         </div>
@@ -146,7 +148,7 @@
                                                 <!--<td th:text="${tweet.timestamp}"></td>-->
                                                 <!--<td th:text="${tweet.text}"></td>-->
                                                 <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
-                                                <td><button class="twitter custombutton btn btn-secondary" type="button" th:value="${user2.id + ',' + tweet.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}" data-toggle="modal" data-target="#tweet-modal">Reply</button></td>
+                                                <td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${user2.id + ',' + tweet.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
                                             </tr>
                                             </tbody>
                                         </table>

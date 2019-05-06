@@ -56,7 +56,6 @@ public class UserController {
                 }
             }
         }
-        System.out.println(viewTweetList.toString());
 
         if(user.isPresent()) {
             model.addAttribute("user", user.get());
