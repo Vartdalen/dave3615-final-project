@@ -1,10 +1,5 @@
 <section class="content-header" th:fragment="css-profile" xmlns:th="http://www.w3.org/1999/xhtml">
     <style>
-        th, td {
-            width: 33.33%;
-            text-align: center;
-        }
-
         h3, h4 {
             font-weight: bold;
         }
@@ -29,9 +24,14 @@
             text-align: center;
         }
 
+        .stats {
+            width: 33.33%;
+            text-align: center;
+        }
+
         .title {
             color: grey;
-            font-size: 18px;
+            font-size: 1em;
         }
 
         a {
@@ -63,6 +63,30 @@
 
         .edit-button {
             margin-left: 6em;
+        }
+
+        .row-activity {
+            padding-top: 2em;
+        }
+
+        .link {
+            cursor: pointer;
+        }
+
+        .tweet-name {
+            display: inline;
+        }
+
+        .tweet-timestamp {
+            font-size: 0.7em;
+        }
+
+        th.tweet-header {
+            padding-bottom: 0;
+        }
+
+        .tweet-table {
+            padding-bottom: 2em;
         }
 
     </style>

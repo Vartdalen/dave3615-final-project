@@ -31,8 +31,8 @@
 
                                 <p th:if="${user != null and user2 == null}" th:text="${user.bio}"></p>
                                 <p th:if="${user2 != null}" th:text="${user2.bio}"></p>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-linkedin link"></i></a>
+                                <a href="#"><i class="fa fa-facebook link"></i></a>
                                 <p>
                                     <form th:action="@{/follows/save}" method="POST" th:if="${followed == null and user2 != null}">
                                         <div class="form-group" style="display: none">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5 column container-activity"></div>
+                    <div class="col-sm-5 column container-activity-divider"></div>
                     <div class="col-sm-2 column container-right"></div>
                 </div>
             </div>
@@ -66,23 +66,23 @@
                     <div class="col-sm-3 column container-stats anti-stupid">
                         <table>
                             <thead>
-                            <tr>
-                                <th class="navbar-brand navbar-header-md col1" scope="col">Followers</th>
-                                <th class="navbar-brand navbar-header-sm col2" scope="col">Following</th>
-                                <th class="navbar-brand navbar-header-sm col3" scope="col">Tweets</th>
+                            <tr class="stats">
+                                <th class="navbar-brand navbar-header-md col1 stats" scope="col">Followers</th>
+                                <th class="navbar-brand navbar-header-sm col2 stats" scope="col">Following</th>
+                                <th class="navbar-brand navbar-header-sm col3 stats" scope="col">Tweets</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td class="navbar-brand navbar-header-lg col1"><h3 th:text="${followers}"></h3></td>
-                                <td class="navbar-brand navbar-header-md col2"><h4 th:text="${following}"></h4></td>
-                                <td class="navbar-brand navbar-header-md col3"><h4 th:text="${tweets}"></h4></td>
+                                <td class="navbar-brand navbar-header-lg col1 stats"><h3 th:text="${followers}"></h3></td>
+                                <td class="navbar-brand navbar-header-md col2 stats"><h4 th:text="${following}"></h4></td>
+                                <td class="navbar-brand navbar-header-md col3 stats"><h4 th:text="${tweets}"></h4></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-sm-2 divider"></div>
-                    <div class="col-sm-2 column container-activity">
+                    <div class="col-sm-2 column container-admin">
                         <div class="navbar navbar-secondary-right">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item anti-stupid" th:if="${user != null}">
@@ -97,23 +97,48 @@
             </nav>
 
             <div class="container-md">
-                <div class="row">
+                <div class="row row-activity">
                     <div class="col-sm-2 column container-left"></div>
-                    <div class="col-sm-2 column container-profile"></div>
-                    <div class="col-sm-6 column container-activity">
+                    <div class="col-sm-8 column container-activity">
                         <ul class="nav nav-tabs">
                             <li class='nav-item'>
-                                <a class='nav-link active' data-toggle='tab' href='#s1'>Following</a>
+                                <a class='nav-link active' data-toggle='tab' href='#s1'>My Tweets</a>
                             </li>
                             <li class='nav-item'>
-                                <a class='nav-link ' data-toggle='tab' href='#s2'>My Tweets</a>
+                                <a class='nav-link ' data-toggle='tab' href='#s2'>Following</a>
                             </li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class='tab-pane container fade in show active' id='s1'>
-                                1
+                                <div th:if="${tweetList != null && !tweetList.empty}" class="container-tweets">
+                                    <th:block th:each="tweet : ${tweetList}">
+                                    <table class="table shadow pb-3 bg-white rounded">
+                                            <thead>
+                                            <tr>
+                                                <th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name" th:text="${user.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${user.firstName + ' ' + user.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                                <th class="tweet-header" th:if="${user2 != null}" scope="col"><a class="tweet-screen-name link" th:text="${user2.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${'   ' + user2.firstName + ' ' + user2.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody class="tweet-text" id="table">
+                                                <tr>
+                                                    <td th:text="${tweet.text}"></td>
+                                                    <!--<td th:text="${tweet.id}"></td>-->
+                                                    <!--<td th:text="${tweet.idParent}"></td>-->
+                                                    <!--<td th:text="${tweet.idUser}"></td>-->
+                                                    <!--<td th:text="${tweet.urlImage}"></td>-->
+                                                    <!--<td th:text="${tweet.timestamp}"></td>-->
+                                                    <!--<td th:text="${tweet.text}"></td>-->
+                                                    <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
+                                                </tr>
+                                            </tbody>
+                                            <br/>
+
+                                    </table>
+                                    </th:block>
+                                </div>
                             </div>
                             <div class='tab-pane container fade' id='s2'>
                                 2

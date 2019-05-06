@@ -50,6 +50,7 @@ public class UserController {
         }
         setModelUser2FollowTweet(user, user2, followList, tweetList, model);
         setModelFollowed(user, user2, followList, model);
+        model.addAttribute("tweetList", tweetList);
 
         return "profile";
     }
