@@ -25,6 +25,9 @@
                                 <h1 th:if="${user != null and user2 == null}" th:text="${user.screenName}"></h1>
                                 <h1 th:if="${user2 != null}" th:text="${user2.screenName}"></h1>
 
+                                <p class="title" th:if="${user != null and user2 == null}" th:text="${user.email}"></p>
+                                <p class="title" th:if="${user2 != null}" th:text="${user2.email}"></p>
+
                                 <p class="title" th:if="${user != null and user2 == null}" th:text="${user.firstName + ' ' + user.lastName}"></p>
                                 <p class="title" th:if="${user2 != null}" th:text="${user2.firstName + ' ' + user2.lastName}"></p>
 
@@ -33,6 +36,7 @@
 
                                 <p th:if="${user != null and user2 == null}" th:text="${user.bio}"></p>
                                 <p th:if="${user2 != null}" th:text="${user2.bio}"></p>
+
                                 <a href="#"><i class="fa fa-linkedin link"></i></a>
                                 <a href="#"><i class="fa fa-facebook link"></i></a>
                                 <p>
@@ -52,7 +56,7 @@
                                         <div class="form-group" style="display: none">
                                             <input type="number" th:name="followed" th:value="${user2.id}"/>
                                         </div>
-                                        <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit" style="width: 80%">Unfollow</button>
+                                        <button class="twitter custombutton btn btn-secondary anti-stupid" type="submit" style="width: 80%; background-color: red">Unfollow</button>
                                     </form>
                                 </p>
                             </div>
@@ -141,14 +145,7 @@
                                             <tbody class="tweet-text">
                                             <tr>
                                                 <td th:text="${tweet.text}"></td>
-                                                <!--<td th:text="${tweet.id}"></td>-->
-                                                <!--<td th:text="${tweet.idParent}"></td>-->
-                                                <!--<td th:text="${tweet.idUser}"></td>-->
-                                                <!--<td th:text="${tweet.urlImage}"></td>-->
-                                                <!--<td th:text="${tweet.timestamp}"></td>-->
-                                                <!--<td th:text="${tweet.text}"></td>-->
-                                                <!--<td><span th:if="${tweet.user}" th:text="${tweet.user.email}"></span></td>-->
-                                                <td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${user2.id + ',' + tweet.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
+                                                <td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${tweet.id + ',' + user2.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
                                             </tr>
                                             </tbody>
                                         </table>

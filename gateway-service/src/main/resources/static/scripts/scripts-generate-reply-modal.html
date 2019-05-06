@@ -1,7 +1,63 @@
 <section class="content-header" th:fragment="scripts-generate-reply-modal" xmlns:th="http://www.w3.org/1999/xhtml">
-    <script type="text/javascript">
+    <script th:inline="javascript">
         function generateReplyModal(viewTweet) {
-            alert(viewTweet);
+            viewTweet = viewTweet.split(',').join('","');
+            viewTweet = '["' + viewTweet + '"]';
+            let viewTweetArray = JSON.parse(viewTweet);
+
+            let tweetModal = $("#tweet-modal");
+            let tweetForm = document.getElementsByClassName('modal-tweet-form-unique')[0];
+            let tweetIdParent = document.getElementsByClassName('modal-tweet-idParent-unique')[0];
+            let tweetIdUser = document.getElementsByClassName('modal-tweet-idUser-unique')[0];
+            let tweetModalHeader = document.getElementsByClassName('modal-tweet-header-unique')[0];
+            let tweetScreenName = document.getElementsByClassName('tweet-screen-name-unique')[0];
+            let tweetName = document.getElementsByClassName('tweet-name-unique')[0];
+            let tweetTimestamp = document.getElementsByClassName('tweet-timestamp-unique')[0];
+            let tweetTextTd = document.getElementsByClassName('tweet-text-unique')[0];
+            let modalTweetText = document.getElementsByClassName('modal-tweet-text-unique')[0];
+            let modalTweetSubmit = document.getElementsByClassName('modal-tweet-submit-unique')[0];
+
+            tweetIdParent.innerHTML = viewTweetArray[0];
+            tweetIdUser.innerHTML = viewTweetArray[1];
+            tweetModalHeader.innerHTML = "Reply to " + viewTweetArray[2];
+            tweetScreenName.innerHTML = viewTweetArray[2];
+            tweetName.innerHTML = viewTweetArray[3] + " " + viewTweetArray[4];
+            tweetTimestamp.innerHTML = viewTweetArray[6];
+            tweetTextTd.innerHTML = viewTweetArray[7];
+            modalTweetText.placeholder = 'Reply to ' + viewTweetArray[2];
+            modalTweetSubmit.innerHTML = 'Reply';
+
+            tweetModal.modal('show');
         }
     </script>
 </section>
+
+<!--<div th:if="${user != null}" class="modal fade" id="tweet-modal" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content modal-container">-->
+            <!--<div class="modal-header">-->
+                <!--<h3>New Tweet</h3>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+                <!--<form th:action="@{/tweets/save}" modelAttribute="tweet" method="POST">-->
+                    <!--<div class="form-group" style="display: none">-->
+                        <!--<input class="form-control" name="idParent" type="text" value="null">-->
+                    <!--</div>-->
+                    <!--<div class="form-group" style="display: none">-->
+                        <!--<input class="form-control" name="idUser" type="number" th:value="${user.id}">-->
+                    <!--</div>-->
+                    <!--<div class="form-group" style="display: none">-->
+                        <!--<input class="form-control" name="urlImage" type="text" value="null">-->
+                    <!--</div>-->
+                    <!--<div class="form-group" style="display: none">-->
+                        <!--<input class="form-control" name="timestamp" type="text" value="2019-04-03 00:16:40">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<textarea class="form-control" name="text" placeholder="What's up?" maxlength="140" style="height: 50%" required></textarea>-->
+                    <!--</div>-->
+                    <!--<button class="twitter modal-form-button btn btn-secondary" type="submit">Tweet</button>-->
+                <!--</form>-->
+            <!--</div>-->
+            <!--<div class="modal-footer"></div>-->
+        <!--</div>-->
+    <!--</div>-->
