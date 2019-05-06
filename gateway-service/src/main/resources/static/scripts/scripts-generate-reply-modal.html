@@ -6,7 +6,6 @@
             let viewTweetArray = JSON.parse(viewTweet);
 
             let tweetModal = $("#tweet-modal");
-            let tweetForm = document.getElementsByClassName('modal-tweet-form-unique')[0];
             let tweetIdParent = document.getElementsByClassName('modal-tweet-idParent-unique')[0];
             let tweetIdUser = document.getElementsByClassName('modal-tweet-idUser-unique')[0];
             let tweetModalHeader = document.getElementsByClassName('modal-tweet-header-unique')[0];
@@ -17,8 +16,9 @@
             let modalTweetText = document.getElementsByClassName('modal-tweet-text-unique')[0];
             let modalTweetSubmit = document.getElementsByClassName('modal-tweet-submit-unique')[0];
 
-            tweetIdParent.innerHTML = viewTweetArray[0];
-            tweetIdUser.innerHTML = viewTweetArray[1];
+            tweetIdParent.value = viewTweetArray[0];
+            tweetIdUser.value = viewTweetArray[1];
+            
             tweetModalHeader.innerHTML = "Reply to " + viewTweetArray[2];
             tweetScreenName.innerHTML = viewTweetArray[2];
             tweetName.innerHTML = viewTweetArray[3] + " " + viewTweetArray[4];

@@ -6,7 +6,7 @@
                 <div class="modal-body">
                     <form th:action="@{/tweets/save}" class="modal-tweet-form-unique" modelAttribute="tweet" method="POST">
                         <div class="form-group" style="display: none">
-                            <input class="form-control modal-tweet-idParent-unique" name="idParent" type="text" value="null">
+                            <input class="form-control modal-tweet-idParent-unique" name="idParent" type="number">
                         </div>
                         <div class="form-group" style="display: none">
                             <input class="form-control modal-tweet-idUser-unique" name="idUser" type="number" th:value="${user.id}">

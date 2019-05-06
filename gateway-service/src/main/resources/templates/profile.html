@@ -145,7 +145,7 @@
                                             <tbody class="tweet-text">
                                             <tr>
                                                 <td th:text="${tweet.text}"></td>
-                                                <td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${tweet.id + ',' + user2.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
+                                                <td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${tweet.id + ',' + user.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
                                             </tr>
                                             </tbody>
                                         </table>
