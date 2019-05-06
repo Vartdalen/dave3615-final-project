@@ -11,21 +11,19 @@
 
         <main>
             <div class="container-lg">
-                <div class="row justify-content-center">
-                    <div class="card">
-                        <div class="card-header">Index</div>
-                        <div class="card-body">
-                            <table th:if="${error}">
-                                <tr>
-                                    <td>Error code:</td>
-                                    <td th:text="${error.code}" style="padding-left: 3em"></td>
-                                </tr>
-                                <tr>
-                                    <td>Error message:</td>
-                                    <td th:text="${error.message}" style="padding-left: 3em"></td>
-                                </tr>
-                            </table>
-                        </div>
+                <div class="card">
+                    <div class="card-header">Index</div>
+                    <div class="card-body">
+                        <table th:if="${error}">
+                            <tr>
+                                <td>Error code:</td>
+                                <td th:text="${error.code}" style="padding-left: 3em"></td>
+                            </tr>
+                            <tr>
+                                <td>Error message:</td>
+                                <td th:text="${error.message}" style="padding-left: 3em"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
