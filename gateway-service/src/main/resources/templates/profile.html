@@ -15,7 +15,7 @@
 
         <main>
             <div class="container-lg twitter-dark">
-                <div class="row">
+                <div class="row row-profile">
                     <div class="col-sm-2 column container-left"></div>
                     <div class="col-sm-3 column container-profile">
                         <div class="container-sm column">
@@ -104,23 +104,21 @@
                     <div class="col-sm-2 column container-profile"></div>
                     <div class="col-sm-6 column container-activity">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                            <li class='nav-item'>
+                                <a class='nav-link active' data-toggle='tab' href='#s1'>Following</a>
+                            </li>
+                            <li class='nav-item'>
+                                <a class='nav-link ' data-toggle='tab' href='#s2'>My Tweets</a>
+                            </li>
                         </ul>
 
+                        <!-- Tab panes -->
                         <div class="tab-content">
-                            <div id="home" class="tab-pane fade in active">
-                                <h3>HOME</h3>
-                                <p>Some content.</p>
+                            <div class='tab-pane container fade in show active' id='s1'>
+                                1
                             </div>
-                            <div id="menu1" class="tab-pane fade">
-                                <h3>Menu 1</h3>
-                                <p>Some content in menu 1.</p>
-                            </div>
-                            <div id="menu2" class="tab-pane fade">
-                                <h3>Menu 2</h3>
-                                <p>Some content in menu 2.</p>
+                            <div class='tab-pane container fade' id='s2'>
+                                2
                             </div>
                         </div>
                     </div>
