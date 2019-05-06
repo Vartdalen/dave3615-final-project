@@ -9,26 +9,43 @@
         <section class="content-header" th:replace="header/imports.html::imports"></section>
         <section class="content-header" th:replace="header/navbar.html::navbar"></section>
 
-        <main>
-            <div class="container-lg container fluid">
-                <div class="row justify-content-center">
-                    <div class="card">
-                        <div class="card-header">Index</div>
-                        <div class="card-body">
-                            <table th:if="${error}">
-                                <tr>
-                                    <td>Error code:</td>
-                                    <td th:text="${error.code}" style="padding-left: 3em"></td>
-                                </tr>
-                                <tr>
-                                    <td>Error message:</td>
-                                    <td th:text="${error.message}" style="padding-left: 3em"></td>
-                                </tr>
-                            </table>
+        <main style="padding-top: 5em;">
+            <div class="container-md container-fluid">
+                <div class="row row-activity">
+                    <div class="col-sm-2 column container-left"></div>
+                    <div class="col-sm-8 column container-activity">
+                        <ul class="nav nav-tabs">
+                            <li class='nav-item'>
+                                <a class='nav-link active' data-toggle='tab' href='#s1'>Tweets</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class='tab-pane container fade in show active' id='s1'>
+                                <div th:if="${viewTweetList != null && !viewTweetList.empty}" class="container-tweets">
+                                    <th:block th:each="tweet : ${viewTweetList}">
+                                        <table class="table tweet-table shadow pb-3 bg-white rounded">
+                                            <thead>
+                                            <tr>
+                                                <th class="tweet-header" scope="col"><a class="tweet-screen-name" th:text="${tweet.screenNameUser}"></a>&nbsp<p class="title tweet-name" th:text="${tweet.firstNameUser + ' ' + tweet.lastNameUser}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody class="tweet-text">
+                                            <tr>
+                                                <td th:text="${tweet.text}"></td>
+                                                <td><button th:if="${user != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${tweet.id + ',' + user.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </th:block>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-sm-2 column container-right"></div>
                 </div>
-            </div>
         </main>
         <section class="content-header" th:replace="header/footer.html::footer"></section>
     </body>

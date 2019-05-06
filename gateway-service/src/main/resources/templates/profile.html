@@ -12,7 +12,6 @@
         <section class="content-header" th:replace="../static/css/css-profile.html::css-profile"></section>
         <section class="content-header" th:replace="modal/modal-edit-profile.html::modal-edit-profile"></section>
         <section class="content-header" th:replace="modal/modal-edit-profile-admin.html::modal-edit-profile-admin"></section>
-        <section class="content-header" th:replace="../static/scripts/scripts-generate-reply-modal::scripts-generate-reply-modal"></section>
 
         <main>
             <div class="container-lg container-fluid twitter-dark">
@@ -153,38 +152,23 @@
                             </div>
 
                             <div class='tab-pane container fade in' id='s2'>
-                                <th:block th:each="tweet : ${followingTweetList}">
-                                    <th:block th:each="userFollowed : ${followingUserList}">
-                                        <table th:if="${user != null and user2 == null and userFollowed.id == tweet.id}" class="table tweet-table shadow pb-3 bg-white rounded">
-                                            <thead>
-                                            <tr>
-                                                <th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name" th:text="${userFollowed.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${userFollowed.firstName + ' ' + userFollowed.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
-                                            </tr>
-                                            </thead>
-
-                                            <tbody class="tweet-text">
-                                            <tr>
-                                                <td th:text="${tweet.text}"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-
-                                        <!--<table th:if="${user2 != null and tweet.idUser == user2.id}" class="table tweet-table shadow pb-3 bg-white rounded">-->
+                                <!--<th:block th:each="tweet : ${followingTweetList}">-->
+                                    <!--<th:block th:each="userFollowed : ${followingUserList}">-->
+                                        <!--<table th:if="${user != null and user2 == null and userFollowed.id == tweet.id}" class="table tweet-table shadow pb-3 bg-white rounded">-->
                                             <!--<thead>-->
                                             <!--<tr>-->
-                                                <!--<th class="tweet-header" th:if="${user2 != null}" scope="col"><a class="tweet-screen-name link" th:text="${user2.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${'   ' + user2.firstName + ' ' + user2.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>-->
+                                                <!--<th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name" th:text="${userFollowed.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${userFollowed.firstName + ' ' + userFollowed.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>-->
                                             <!--</tr>-->
                                             <!--</thead>-->
-    <!---->
+
                                             <!--<tbody class="tweet-text">-->
                                             <!--<tr>-->
                                                 <!--<td th:text="${tweet.text}"></td>-->
-                                                <!--<td><button th:if="${user2.id != null}" onclick="generateReplyModal(this.value)" class="twitter custombutton btn btn-secondary" type="button" th:value="${tweet.id + ',' + user.id + ',' + tweet.screenNameUser + ',' + tweet.firstNameUser + ',' + tweet.lastNameUser + ',' + tweet.urlImage + ',' + tweet.timestamp + ',' + tweet.text}">Reply</button></td>-->
                                             <!--</tr>-->
                                             <!--</tbody>-->
                                         <!--</table>-->
-                                    </th:block>
-                                </th:block>
+                                    <!--</th:block>-->
+                                <!--</th:block>-->
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ package no.oslomet.gatewayservice.controller;
 
 import no.oslomet.gatewayservice.model.Tweet;
 import no.oslomet.gatewayservice.model.User;
+import no.oslomet.gatewayservice.model.view.ViewTweet;
 import no.oslomet.gatewayservice.service.TweetService;
 import no.oslomet.gatewayservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,10 +31,22 @@ public class HomeController {
         List<Tweet> tweetList = tweetService.getAllTweets();
         model.addAttribute("tweetList", tweetList);
 
-        Optional<User> user = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
-        if(user.isPresent()) {
-            model.addAttribute("user", user.get());
+        Optional<User> userSession = getUserSession(model, SecurityContextHolder.getContext().getAuthentication(), userService);
+        if(userSession.isPresent()) {
+            model.addAttribute("user", userSession.get());
         }
+
+        List<User> userList = userService.getAllUsers();
+        List<ViewTweet> viewTweetList = new ArrayList<>();
+        for (Tweet tweet: tweetList) {
+            for (User user: userList) {
+                if(tweet.getIdUser() == user.getId()) {
+                    viewTweetList.add(new ViewTweet(tweet.getId(), tweet.getIdParent(), user.getId(), user.getScreenName(), user.getFirstName(), user.getLastName(), tweet.getUrlImage(), tweet.getTimestamp(), tweet.getText()));
+                }
+            }
+        }
+
+        model.addAttribute("viewTweetList", viewTweetList);
         return "index";
     }
 

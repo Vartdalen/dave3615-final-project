@@ -17,8 +17,8 @@ public class ViewTweet {
 
     public ViewTweet() {}
 
-    public ViewTweet(long id, String idParent, long idUser, String screenNameUser, String firstNameUser, String lastNameUser, String urlImage, Timestamp timestamp, String text) {
-        this.id = id;
+    public ViewTweet(long idTweet, String idParent, long idUser, String screenNameUser, String firstNameUser, String lastNameUser, String urlImage, Timestamp timestamp, String text) {
+        this.id = idTweet;
         this.idParent = idParent;
         this.idUser = idUser;
         this.screenNameUser = screenNameUser;
@@ -29,7 +29,7 @@ public class ViewTweet {
         this.text = text;
     }
 
-    public long getId() { return id; }
+    public long getIdTweet() { return id; }
     public String getIdParent() { return idParent; }
     public long getIdUser() { return idUser; }
     public void setScreenNameUser(String screenNameUser) {  this.screenNameUser = screenNameUser; }
@@ -39,7 +39,7 @@ public class ViewTweet {
     public Timestamp getTimestamp() { return timestamp; }
     public String getText() { return text; }
 
-    public void setId(long id) { this.id = id; }
+    public void setIdTweet(long id) { this.id = id; }
     public void setIdParent(String idParent) { this.idParent = idParent; }
     public void setIdUser(long idUser) { this.idUser = idUser; }
     public String getScreenNameUser() { return screenNameUser; }
