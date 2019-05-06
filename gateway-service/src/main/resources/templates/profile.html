@@ -19,12 +19,15 @@
                     <div class="col-sm-2 column container-left"></div>
                     <div class="col-sm-3 column container-profile">
                         <div class="container-sm column">
-                            <div class="card">
+                            <div class="card card-profile">
                                 <h1 th:if="${user != null and user2 == null}" th:text="${user.screenName}"></h1>
                                 <h1 th:if="${user2 != null}" th:text="${user2.screenName}"></h1>
 
                                 <p class="title" th:if="${user != null and user2 == null}" th:text="${user.firstName + ' ' + user.lastName}"></p>
                                 <p class="title" th:if="${user2 != null}" th:text="${user2.firstName + ' ' + user2.lastName}"></p>
+
+                                <p class="title" th:if="${user != null and user2 == null}" th:text="${user.role}"></p>
+                                <p class="title" th:if="${user2 != null}" th:text="${user2.role}"></p>
 
                                 <p th:if="${user != null and user2 == null}" th:text="${user.bio}"></p>
                                 <p th:if="${user2 != null}" th:text="${user2.bio}"></p>
@@ -58,15 +61,9 @@
                 </div>
             </div>
             <nav class="navbar navbar-expand navbar-light navbar-laravel navbar-secondary">
-                <div class="container">
-                    <div class="navbar">
-                        <a class="navbar-brand bird-cage" href="/">
-                            <img class="bird" th:src="@{/images/bird.png}" style="height: 2em; position: absolute">
-                            <img class="bird_" th:src="@{/images/bird_.png}" style="height: 2em">
-                        </a>
-                    </div>
-
-                    <div class="circle anti-stupid">
+                <div class="row row-navbar-secondary">
+                    <div class="col-sm-2 column container-left"></div>
+                    <div class="col-sm-3 column container-stats anti-stupid">
                         <table>
                             <thead>
                             <tr>
@@ -84,23 +81,24 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="navbar">
-                        <ul class="navbar-nav ml-auto">
-                            <li>
-                                <div class="divider-vertical"></div>
-                            </li>
-                            <li class="nav-item anti-stupid" th:if="${user != null}">
-                                <button th:if="${user2 == null}" class="twitter custombutton btn btn-secondary anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>
-                                <button th:if="${user.role == 'ADMIN' and user2 != null and user2.id != null}" class="twitter custombutton btn btn-secondary anti-stupid admin" type="button" href="#" data-toggle="modal" data-target="#edit-profile-admin-modal">Admin</button>
-                            </li>
-                        </ul>
+                    <div class="col-sm-2 divider"></div>
+                    <div class="col-sm-2 column container-activity">
+                        <div class="navbar navbar-secondary-right">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item anti-stupid" th:if="${user != null}">
+                                    <button th:if="${user2 == null}" class="twitter custombutton btn btn-secondary edit-button anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-modal">Edit Profile</button>
+                                    <button th:if="${user.role == 'ADMIN' and user2 != null and user2.id != null}" class="twitter custombutton btn btn-secondary edit-button admin anti-stupid" type="button" href="#" data-toggle="modal" data-target="#edit-profile-admin-modal">Admin</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    <div class="col-sm-2 column container-right"></div>
                 </div>
             </nav>
+
             <div class="container-md">
                 <div class="row">
-                    <div class="col-sm-2 column container-right"></div>
+                    <div class="col-sm-2 column container-left"></div>
                     <div class="col-sm-2 column container-profile"></div>
                     <div class="col-sm-6 column container-activity">
                         <ul class="nav nav-tabs">

@@ -17,13 +17,10 @@
             min-height: 5em;
         }
 
-        .container-lg {
-            min-height: 25em;
-        }
-
-        .row-profile {
-            padding-top: 6em;
-        }
+            .row-navbar-secondary {
+                max-width: 100%;
+                width: 100%;
+            }
 
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -43,6 +40,29 @@
 
         button:hover, a:hover {
             opacity: 0.7;
+        }
+
+        .row-profile {
+            padding-top: 6em;
+            padding-bottom: 2em;
+        }
+
+        @media (max-width: 575px) {
+            .row-profile {
+                padding-top: 10em;
+            }
+        }
+
+        .card-profile {
+            min-width: 20em;
+        }
+
+        .container-stats {
+            margin-left: 1em;
+        }
+
+        .edit-button {
+            margin-left: 6em;
         }
 
     </style>
