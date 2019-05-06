@@ -1,5 +1,6 @@
 INSERT INTO user (bio, email, first_name, last_name, password, role, screen_name)
 VALUES
+('admin bio', 'admin@live.no', 'admin', 'admin', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'ADMIN', 'admin'),
 ('Twitter1', 'user1@live.no', 'user1', 'user1', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user1'),
 ('Twitter2', 'user2@live.no', 'user2', 'user2', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user2'),
 ('Twitter3', 'user3@live.no', 'user3', 'user3', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user3'),
@@ -19,5 +20,4 @@ VALUES
 ('Twitter17', 'user17@live.no', 'user17', 'user17', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user17'),
 ('Twitter18', 'user18@live.no', 'user18', 'user18', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user18'),
 ('Twitter19', 'user19@live.no', 'user19', 'user19', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user19'),
-('Twitter20', 'user20@live.no', 'user20', 'user20', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user20'),
-('admin bio', 'admin@live.no', 'admin', 'admin', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'ADMIN', 'admin');
+('Twitter20', 'user20@live.no', 'user20', 'user20', '$2a$10$X0RrxTODs.VqERjd0Mj7TOLn5MXJW11nOSFm5weV7seIbsnOirVyW', 'USER', 'user20');

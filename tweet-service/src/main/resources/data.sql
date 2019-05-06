@@ -1,1 +1,22 @@
-INSERT INTO tweet (id_parent, id_user, text, timestamp, url_image) VALUES ('null', 1, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null');
+INSERT INTO tweet (id_parent, id_user, text, timestamp, url_image)
+VALUES
+('null', 1, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+('null', 1, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+('null', 1, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+('null', 1, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(1, 2, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(1, 3, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(1, 4, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(1, 5, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(2, 6, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(2, 7, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(2, 8, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(2, 2, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(3, 3, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(3, 4, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(3, 5, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(3, 6, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(4, 7, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(4, 8, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(4, 9, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null'),
+(4, 10, 'test', TIMESTAMP('2009-03-29','04:07:54'), 'null');
