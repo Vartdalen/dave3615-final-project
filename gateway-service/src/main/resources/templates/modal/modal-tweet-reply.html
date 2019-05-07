@@ -1,0 +1,47 @@
+<section class="content-header" th:fragment="modal-tweet-reply" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:if="${user != null}" class="modal fade" id="tweet-modal-reply" role="dialog" aria-labelledby="tweet-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-container">
+                <div class="modal-header"><h3 class="modal-tweet-reply-header-unique">New Tweet</h3></div>
+                <div class="modal-body">
+                    <form th:action="@{/tweets/save}" class="modal-tweet-reply-form-unique" modelAttribute="tweet" method="POST">
+                        <div class="form-group" style="display: none">
+                            <input class="form-control modal-tweet-reply-idParent-unique" name="idParent" type="number">
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <input class="form-control modal-tweet-reply-idUser-unique" name="idUser" type="number" th:value="${user.id}">
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <input class="form-control modal-tweet-reply-urlImage" name="urlImage" type="text" value="null">
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <input class="modal-tweet-reply-timestamp" name="timestamp" type="text" value="2019-04-03 00:16:40">
+                        </div>
+                        <table class="table tweet-table shadow pb-3 bg-white rounded">
+                            <thead>
+                            <tr>
+                                <th class="tweet-header" scope="col">
+                                    <a class="tweet-screen-name modal-tweet-screen-reply-name-unique link"></a>&nbsp
+                                    <p class="title tweet-name modal-tweet-name-reply-unique" ></p>&nbsp
+                                    <p class="title tweet-timestamp modal-tweet-reply-timestamp-unique"></p>
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody class="tweet-text">
+                            <tr>
+                                <td class="modal-tweet-text-reply-unique">Empty</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <textarea class="form-control modalTweetText modal-tweet-textarea-reply-unique" name="text" placeholder="What's up?" maxlength="140" style="height: 50%" required></textarea>
+                        </div>
+                        <button class="twitter modal-form-button btn btn-secondary modalTweetSubmit modal-tweet-submit-reply-unique" type="submit">Tweet</button>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+</section>

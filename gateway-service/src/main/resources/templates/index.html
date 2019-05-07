@@ -28,7 +28,10 @@
                                         <table class="table tweet-table shadow pb-3 bg-white rounded">
                                             <thead>
                                             <tr>
-                                                <th class="tweet-header" scope="col"><a class="tweet-screen-name" th:text="${tweet.screenNameUser}"></a>&nbsp<p class="title tweet-name" th:text="${tweet.firstNameUser + ' ' + tweet.lastNameUser}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                                <th class="tweet-header" scope="col">
+                                                    <a class="tweet-screen-name link" th:text="${tweet.screenNameUser}" th:onclick="|window.location.href='/users/${key}'|"></a>&nbsp
+                                                    <p class="title tweet-name" th:text="${tweet.firstNameUser + ' ' + tweet.lastNameUser}"></p>&nbsp
+                                                    <p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
                                             </tr>
                                             </thead>
 

@@ -5,21 +5,23 @@
             viewTweet = '["' + viewTweet + '"]';
             let viewTweetArray = JSON.parse(viewTweet);
 
-            let tweetModal = $("#tweet-modal");
-            let tweetIdParent = document.getElementsByClassName('modal-tweet-idParent-unique')[0];
-            let tweetIdUser = document.getElementsByClassName('modal-tweet-idUser-unique')[0];
-            let tweetModalHeader = document.getElementsByClassName('modal-tweet-header-unique')[0];
-            let tweetScreenName = document.getElementsByClassName('tweet-screen-name-unique')[0];
-            let tweetName = document.getElementsByClassName('tweet-name-unique')[0];
-            let tweetTimestamp = document.getElementsByClassName('tweet-timestamp-unique')[0];
-            let tweetTextTd = document.getElementsByClassName('tweet-text-unique')[0];
-            let modalTweetText = document.getElementsByClassName('modal-tweet-text-unique')[0];
-            let modalTweetSubmit = document.getElementsByClassName('modal-tweet-submit-unique')[0];
+            let tweetModal = $("#tweet-modal-reply");
+            let tweetIdParent = document.getElementsByClassName('modal-tweet-reply-idParent-unique')[0];
+            let tweetIdUser = document.getElementsByClassName('modal-tweet-reply-idUser-unique')[0];
+            let tweetModalHeader = document.getElementsByClassName('modal-tweet-reply-header-unique')[0];
+            let tweetScreenName = document.getElementsByClassName('modal-tweet-screen-reply-name-unique')[0];
+            let tweetName = document.getElementsByClassName('modal-tweet-name-reply-unique')[0];
+            let tweetTimestamp = document.getElementsByClassName('modal-tweet-reply-timestamp-unique')[0];
+            let tweetTextTd = document.getElementsByClassName('modal-tweet-text-reply-unique')[0];
+            let modalTweetText = document.getElementsByClassName('modal-tweet-text-reply-unique')[0];
+            let modalTweetSubmit = document.getElementsByClassName('modal-tweet-submit-reply-unique')[0];
+            let modalTweetTextArea = document.getElementsByClassName('modal-tweet-textarea-reply-unique')[0];
 
             tweetIdParent.value = viewTweetArray[0];
             tweetIdUser.value = viewTweetArray[1];
 
             tweetModalHeader.innerHTML = "Reply to " + viewTweetArray[2];
+            modalTweetTextArea.placeholder = "Reply to " + viewTweetArray[2];
             tweetScreenName.innerHTML = viewTweetArray[2];
             tweetName.innerHTML = viewTweetArray[3] + " " + viewTweetArray[4];
             tweetTimestamp.innerHTML = viewTweetArray[6];
