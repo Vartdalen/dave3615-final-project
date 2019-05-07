@@ -155,12 +155,12 @@
                             </div>
 
                             <div class='tab-pane container fade in' id='s2'>
-                                <th:block th:each="tweet : ${followTweetList}">
-                                    <table th:if="${user != null and user2 != null}" class="table tweet-table shadow pb-3 bg-white rounded">
+                                <th:block th:if="${user != null or user2 != null}" th:each="tweet : ${followTweetList}">
+                                    <table class="table tweet-table shadow pb-3 bg-white rounded">
                                         <thead>
                                         <tr>
                                             <th class="tweet-header" scope="col">
-                                                <a class="tweet-screen-name link" th:text="${tweet.screenNameUser}"></a>&nbsp
+                                                <a class="tweet-screen-name link" th:href="@{'/users/'+${tweet.screenNameUser}}" th:text="${tweet.screenNameUser}"></a>&nbsp
                                                 <p class="title tweet-name" th:text="${tweet.firstNameUser + ' ' + tweet.lastNameUser}"></p>&nbsp
                                                 <p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
                                         </tr>

@@ -134,12 +134,14 @@ public class UserController {
             followers = getFollowers(user2.get(), followList);
             following = getFollowing(user2.get(), followList);
             tweets = getTweets(user2.get(), tweetList);
-            model.addAttribute("followTweetList", getFollowedTweetsList(tweetList, followedUserList));
             model.addAttribute("user2", user2.get());
+            model.addAttribute("followTweetList", getFollowedTweetsList(tweetList, followedUserList));
         } else if (user.isPresent()) {
+            List<User> followedUserList = getFollowedUserList(user.get(), followList);
             followers = getFollowers(user.get(), followList);
             following = getFollowing(user.get(), followList);
             tweets = getTweets(user.get(), tweetList);
+            model.addAttribute("followTweetList", getFollowedTweetsList(tweetList, followedUserList));
         }
         model.addAttribute("followers", followers);
         model.addAttribute("following", following);
