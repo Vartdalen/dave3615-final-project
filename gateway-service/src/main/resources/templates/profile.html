@@ -122,7 +122,10 @@
                                         <table th:if="${user != null and user2 == null and tweet.idUser == user.id}" class="table tweet-table shadow pb-3 bg-white rounded">
                                             <thead>
                                             <tr>
-                                                <th class="tweet-header" th:if="${user != null and user2 == null}" scope="col"><a class="tweet-screen-name link" th:text="${user.screenName}"></a>&nbsp<p class="title tweet-name" th:text="${user.firstName + ' ' + user.lastName}"></p>&nbsp<p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
+                                                <th class="tweet-header" th:if="${user != null and user2 == null}" scope="col">
+                                                    <a class="tweet-screen-name link" th:href="@{'/users/'+${tweet.screenNameUser}}" th:text="${user.screenName}"></a>&nbsp
+                                                    <p class="title tweet-name" th:text="${user.firstName + ' ' + user.lastName}"></p>&nbsp
+                                                    <p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
                                             </tr>
                                             </thead>
 
@@ -137,8 +140,8 @@
                                             <thead>
                                             <tr>
                                                 <th class="tweet-header" th:if="${user2 != null}" scope="col">
-                                                    <a class="tweet-screen-name link" th:text="${user2.screenName}"></a>&nbsp
-                                                    <p class="title tweet-name" th:text="${'   ' + user2.firstName + ' ' + user2.lastName}"></p>&nbsp
+                                                    <a class="tweet-screen-name link" th:href="@{'/users/'+${tweet.screenNameUser}}" th:text="${user2.screenName}"></a>&nbsp
+                                                    <p class="title tweet-name" th:text="${user2.firstName + ' ' + user2.lastName}"></p>&nbsp
                                                     <p class="title tweet-timestamp" th:text="${tweet.timestamp}"></p></th>
                                             </tr>
                                             </thead>
